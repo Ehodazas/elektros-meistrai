@@ -6,6 +6,7 @@ import PhoneCallout from "../components/PhoneCallout.tsx";
 import CtaBand from "../components/CtaBand.tsx";
 import NotFound from "./NotFound.tsx";
 import { serviceBySlug, services } from "../data/services.ts";
+import { stagger } from "../lib/stagger.ts";
 
 export default function ServiceDetail() {
   const { slug } = useParams();
@@ -77,7 +78,7 @@ export default function ServiceDetail() {
             <h2 className="mt-4 text-3xl font-extrabold text-white">Ką gaunate</h2>
             <ul className="mt-8 grid gap-px overflow-hidden rounded-md bg-white/10 sm:grid-cols-3">
               {s.benefits.map((b, i) => (
-                <li key={b.title} className="bg-navy-2 p-6">
+                <li key={b.title} data-reveal style={stagger(i)} className="bg-navy-2 p-6">
                   <span className="font-display text-sm font-bold text-amber">{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="mt-3 text-lg font-bold text-white">{b.title}</h3>
                   <p className="mt-2 text-[0.95rem] text-white/70">{b.text}</p>
@@ -95,8 +96,8 @@ export default function ServiceDetail() {
         <div className="wrap">
           <h2 className="text-2xl font-extrabold sm:text-3xl">Kitos paslaugos</h2>
           <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {others.map((o) => (
-              <li key={o.slug}>
+            {others.map((o, i) => (
+              <li key={o.slug} data-reveal style={stagger(i)}>
                 <Link to={`/paslaugos/${o.slug}`} className="img-zoom group block">
                   <div className="aspect-[4/3] overflow-hidden rounded-md">
                     <Photo name={o.image} alt={o.imageAlt} sizes="(min-width: 1024px) 290px, (min-width: 640px) 50vw, 100vw" />

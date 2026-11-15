@@ -6,6 +6,7 @@ import Photo from "../components/Photo.tsx";
 import CtaBand from "../components/CtaBand.tsx";
 import { categoryLabels, projects, type Project, type ProjectCategory } from "../data/projects.ts";
 import { company } from "../data/company.ts";
+import { stagger } from "../lib/stagger.ts";
 
 const filters: { value: "visi" | ProjectCategory; label: string }[] = [
   { value: "visi", label: "Visi darbai" },
@@ -74,8 +75,8 @@ export default function Projects() {
           <p className="sr-only" aria-live="polite">Rodoma projektų: {visible.length}</p>
 
           <ul className="mt-8 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-            {visible.map((p) => (
-              <li key={p.id}>
+            {visible.map((p, i) => (
+              <li key={p.id} data-reveal style={stagger(i % 3)}>
                 <button type="button" onClick={() => update("projektas", p.id)} className="img-zoom group block w-full text-left">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-line">
                     <Photo name={p.images[0].key} alt={p.images[0].alt} sizes="(min-width: 1024px) 390px, (min-width: 640px) 50vw, 100vw" />

@@ -47,6 +47,17 @@ emergencyService: false,          // true TIK jei tikrai teikiate avarinę pagal
 demoMode: false,                  // išjungia „demonstracinė svetainė“ žymes
 ```
 
+Papildomi blokai, kurie rodomi **tik užpildžius tikrais duomenimis**:
+
+```ts
+serviceAreas: ["Vilnius", "Vilniaus rajonas"],             // „Kur dirbame“ sąrašas
+stats: [{ value: 120, suffix: "+", label: "atliktų objektų" }], // skaičiai su animacija
+testimonials: [{ name: "Vardas", area: "Vilnius", text: "...", rating: 5, source: "Google" }],
+```
+
+Neįrašykite išgalvotų skaičių ar atsiliepimų: tai klaidinanti reklama.
+DUK klausimai keičiami faile [`src/data/faq.ts`](src/data/faq.ts).
+
 Tuščias laukas (`""`) reiškia „nenurodyta“: tada svetainėje rodomas aiškiai pažymėtas pavyzdys, o nuorodos neaktyvuojamos.
 
 Kiti turinio failai:

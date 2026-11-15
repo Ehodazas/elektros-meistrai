@@ -47,6 +47,13 @@ export default function Contact() {
                   <p className="text-sm text-muted">Aptarnaujama teritorija</p>
                   <p className="font-semibold text-navy">{company.serviceArea || placeholders.serviceArea}</p>
                   {company.address && <p className="mt-1 text-muted">{company.address}</p>}
+                  {company.serviceAreas.length > 0 && (
+                    <ul className="mt-2 flex flex-wrap gap-1.5">
+                      {company.serviceAreas.map((a) => (
+                        <li key={a} className="rounded-full bg-paper px-2.5 py-1 text-xs font-semibold text-navy">{a}</li>
+                      ))}
+                    </ul>
+                  )}
                 </dd>
               </div>
               <div className="flex gap-4 py-5">

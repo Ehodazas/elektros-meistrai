@@ -198,6 +198,19 @@ export function serviceBySlug(slug: string | undefined): Service | undefined {
   return services.find((s) => s.slug === slug);
 }
 
+/**
+ * Smulkesnės paslaugos be atskiro puslapio. Matavimus ir protokolus bei kitus
+ * darbus, kuriems reikia atestato, rodykite tik jei įmonė jį turi.
+ */
+export const extraServices: { title: string; text: string; icon: "plug" | "car" | "gauge" | "motion" | "building" | "meter" }[] = [
+  { icon: "plug", title: "Buitinės technikos pajungimas", text: "Kaitlentės, orkaitės, viryklės, vandens šildytuvai – su tinkama linija ir apsauga." },
+  { icon: "car", title: "Elektromobilių įkrovimo stotelės", text: "Galios įvertinimas, linija nuo skydo ir stotelės montavimas namuose ar įmonėje." },
+  { icon: "gauge", title: "Matavimai ir patikra", text: "Izoliacijos varžos ir įžeminimo patikra prieš pridavimą, pardavimą ar nuomą." },
+  { icon: "motion", title: "Šviestuvai su judesio jutikliais", text: "Laiptinės, koridoriai, rūsiai ir lauko teritorija – šviesa tik tada, kai jos reikia." },
+  { icon: "building", title: "Daugiabučių bendrųjų patalpų elektra", text: "Laiptinių, rūsių instaliacija ir apšvietimas, darbai suderinti su administratoriumi." },
+  { icon: "meter", title: "Automatų ir kontrolinių skaitiklių keitimas", text: "Pasenusių automatų, saugiklių ir kontrolinių skaitiklių keitimas bei pajungimas." },
+];
+
 /** Formos „Paslaugos tipas“ pasirinkimai. */
 export const formServiceOptions = [
   "Elektros instaliacija",

@@ -82,7 +82,7 @@ export default function Header() {
         scrolled ? "border-line shadow-[0_6px_24px_-12px_rgba(16,29,48,0.25)]" : "border-transparent"
       }`}
     >
-      <div className="wrap flex h-[72px] items-center gap-6">
+      <div className="wrap flex h-[4.5rem] items-center gap-6">
         <Logo />
 
         <nav aria-label="Pagrindinis meniu" className="ml-auto hidden lg:block">
@@ -122,7 +122,7 @@ export default function Header() {
         ref={panelRef}
         hidden={!open}
         style={{ height: panelHeight || undefined }}
-        className="absolute inset-x-0 top-full z-40 h-[calc(100dvh-72px)] overflow-y-auto bg-navy text-white lg:hidden"
+        className="absolute inset-x-0 top-full z-40 h-[calc(100dvh-4.5rem)] overflow-y-auto bg-navy text-white lg:hidden"
       >
         <nav aria-label="Mobilusis meniu" className="wrap flex min-h-full flex-col py-6">
           <ul className="divide-y divide-white/10 border-y border-white/10">

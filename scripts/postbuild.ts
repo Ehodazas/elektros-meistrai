@@ -13,6 +13,7 @@ import { dirname, join } from "node:path";
 import { loadEnv } from "vite";
 import { pages, notFoundSeo, type PageSeo } from "../src/data/seo.ts";
 import { company } from "../src/data/company.ts";
+import { faq } from "../src/data/faq.ts";
 
 const env = loadEnv(process.env.NODE_ENV === "development" ? "development" : "production", process.cwd(), "");
 const DIST = "dist";
@@ -62,7 +63,12 @@ function jsonLd(): string {
   if (company.email) data.email = company.email;
   if (company.serviceArea) data.areaServed = company.serviceArea;
   if (company.address) data.address = company.address;
-  return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
+  const faqData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  };
+  return [data, faqData].map((d) => `<script type="application/ld+json">${JSON.stringify(d)}</script>`).join("\n    ");
 }
 
 const template = readFileSync(join(DIST, "index.html"), "utf8");

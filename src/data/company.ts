@@ -10,6 +10,8 @@
  */
 
 export type HoursRow = { days: string; time: string };
+export type Stat = { value: number; suffix?: string; label: string };
+export type Testimonial = { name: string; area?: string; text: string; rating?: 1 | 2 | 3 | 4 | 5; source?: string };
 
 export const company = {
   /** Prekės ženklas, rodomas svetainėje. */
@@ -48,6 +50,26 @@ export const company = {
    * teikia šią paslaugą. Kol false – svetainėje apie ją neužsimenama.
    */
   emergencyService: false,
+
+  /**
+   * Konkrečios vietovės (miestai, rajonai, mikrorajonai), rodomos kaip sąrašas
+   * pagrindiniame ir kontaktų puslapyje. Tuščias – sąrašas nerodomas.
+   * Pvz.: ["Vilnius", "Vilniaus rajonas", "Trakai"]
+   */
+  serviceAreas: [] as string[],
+
+  /**
+   * Skaičiai su animacija (pvz. įvykdytų projektų skaičius). Įrašykite TIK
+   * tikrus, pagrįstus duomenis. Tuščias masyvas – blokas nerodomas.
+   * Pvz.: [{ value: 120, suffix: "+", label: "atliktų objektų" }]
+   */
+  stats: [] as Stat[],
+
+  /**
+   * Klientų atsiliepimai. Įrašykite TIK tikrus atsiliepimus, gautus su
+   * kliento sutikimu (pvz. iš Google ar el. laiškų). Tuščias – blokas nerodomas.
+   */
+  testimonials: [] as Testimonial[],
 
   /**
    * Demonstracinis režimas: rodoma juosta, kad tai pavyzdinė svetainė,

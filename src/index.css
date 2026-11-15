@@ -45,7 +45,7 @@
 
 @layer components {
   .wrap {
-    @apply mx-auto w-full max-w-[1240px] px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-[77.5rem] px-4 sm:px-6 lg:px-8;
   }
   .eyebrow {
     @apply inline-flex items-center gap-2 font-display text-[0.8rem] font-bold uppercase tracking-[0.12em] text-blue;
@@ -79,6 +79,50 @@
   .prose-lt a { @apply text-blue underline underline-offset-2; }
 }
 
+/* Larger screens and TVs: scale everything up (all sizes are in rem). */
+@media (min-width: 1920px) { html { font-size: 112.5%; } }
+@media (min-width: 2560px) { html { font-size: 137.5%; } }
+@media (min-width: 3400px) { html { font-size: 175%; } }
+
+/* Scroll reveal – only active once JS has added .reveal-ready */
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+.reveal-ready [data-reveal="left"] { transform: translateX(-32px); }
+.reveal-ready [data-reveal="right"] { transform: translateX(32px); }
+.reveal-ready [data-reveal="zoom"] { transform: scale(0.96); }
+.reveal-ready [data-reveal].is-visible { opacity: 1; transform: none; }
+
+/* Slow zoom on hero photo */
+@keyframes kenburns {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+.kenburns { animation: kenburns 14s ease-out both; }
+
+/* Pulse ring for floating call button */
+@keyframes ring {
+  0% { box-shadow: 0 0 0 0 rgba(245, 184, 65, 0.55); }
+  80%, 100% { box-shadow: 0 0 0 16px rgba(245, 184, 65, 0); }
+}
+.ring-pulse { animation: ring 2.4s ease-out infinite; }
+
+/* Current flowing along a line (process steps) */
+@keyframes flow {
+  from { background-position: 0 0; }
+  to { background-position: 200% 0; }
+}
+.current-line {
+  background-image: linear-gradient(90deg, transparent 0%, var(--color-amber) 45%, transparent 55%);
+  background-size: 200% 100%;
+  animation: flow 3s linear infinite;
+}
+
 /* Hero entrance – once on load */
 @keyframes rise {
   from { opacity: 0; transform: translateY(14px); }
@@ -96,4 +140,5 @@
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+  .kenburns, .ring-pulse, .current-line { animation: none !important; }
 }

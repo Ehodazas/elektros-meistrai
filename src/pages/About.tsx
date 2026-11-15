@@ -4,6 +4,7 @@ import PageHeader from "../components/PageHeader.tsx";
 import Photo from "../components/Photo.tsx";
 import CtaBand from "../components/CtaBand.tsx";
 import { company } from "../data/company.ts";
+import { stagger } from "../lib/stagger.ts";
 
 const principles = [
   {
@@ -79,8 +80,8 @@ export default function About() {
             <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">Principai, kurių laikomės kiekviename objekte</h2>
           </div>
           <ul className="mt-12 grid gap-x-12 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-            {principles.map((p) => (
-              <li key={p.title} className="border-t-2 border-navy pt-6">
+            {principles.map((p, i) => (
+              <li key={p.title} data-reveal style={stagger(i % 3)} className="border-t-2 border-navy pt-6">
                 <p.icon className="h-6 w-6 text-blue" aria-hidden="true" />
                 <h3 className="mt-4 text-xl font-bold">{p.title}</h3>
                 <p className="mt-2 text-muted">{p.text}</p>

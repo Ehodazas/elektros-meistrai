@@ -32,13 +32,13 @@ export default function Services() {
         {services.map((s, i) => (
           <section key={s.slug} id={s.slug} aria-labelledby={`${s.slug}-h`} className="py-10 md:py-16">
             <div className="wrap grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
-              <div className={`img-zoom relative aspect-[4/3] overflow-hidden rounded-md ${i % 2 ? "lg:order-2" : ""}`}>
+              <div data-reveal={i % 2 ? "right" : "left"} className={`img-zoom relative aspect-[4/3] overflow-hidden rounded-md ${i % 2 ? "lg:order-2" : ""}`}>
                 <Photo name={s.image} alt={s.imageAlt} sizes="(min-width: 1024px) 600px, 100vw" />
                 <span className="absolute top-4 left-4 rounded-sm bg-navy px-2.5 py-1 font-display text-sm font-bold text-amber">
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </div>
-              <div>
+              <div data-reveal>
                 <h2 id={`${s.slug}-h`} className="text-3xl font-extrabold sm:text-[2.25rem]">{s.title}</h2>
                 <p className="mt-4 text-lg text-muted">{s.summary}</p>
 

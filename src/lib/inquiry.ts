@@ -57,21 +57,39 @@ export function validateInquiry(d: InquiryData): InquiryErrors {
 
 export type SubmitResult = { ok: true } | { ok: false; message: string };
 
-export async function sendInquiry(d: InquiryData): Promise<SubmitResult> {
+async function postPayload(payload: Record<string, unknown>): Promise<SubmitResult> {
   if (isDemoForm) return { ok: false, message: "demo" };
   try {
     const res = await fetch(FORM_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({
-        ...d,
-        _subject: `Nauja užklausa: ${d.paslauga} – ${d.miestas}`,
-        puslapis: window.location.href,
-      }),
+      body: JSON.stringify({ ...payload, puslapis: window.location.href }),
     });
     if (!res.ok) return { ok: false, message: `HTTP ${res.status}` };
     return { ok: true };
   } catch {
     return { ok: false, message: "network" };
   }
+}
+
+export function sendInquiry(d: InquiryData): Promise<SubmitResult> {
+  return postPayload({ ...d, _subject: `Nauja užklausa: ${d.paslauga} – ${d.miestas}` });
+}
+
+/* ---------- Greitas „Perskambinkite man“ formos variantas ---------- */
+
+export type CallbackData = { vardas: string; telefonas: string; problema: string };
+export type CallbackErrors = Partial<Record<keyof CallbackData, string>>;
+
+export function validateCallback(d: CallbackData): CallbackErrors {
+  const e: CallbackErrors = {};
+  if (d.vardas.trim().length < 2) e.vardas = "Įrašykite vardą.";
+  if (!d.telefonas.trim()) e.telefonas = "Įrašykite telefono numerį.";
+  else if (!isValidLtPhone(d.telefonas)) e.telefonas = "Pavyzdys: +370 612 34567";
+  if (d.problema.length > 1000) e.problema = "Daugiausia 1000 simbolių.";
+  return e;
+}
+
+export function sendCallback(d: CallbackData): Promise<SubmitResult> {
+  return postPayload({ ...d, tipas: "Perskambinti", _subject: `Prašymas perskambinti: ${d.vardas}` });
 }

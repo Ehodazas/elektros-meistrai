@@ -32,7 +32,7 @@ export default function CtaBand({
               <PhoneLink className="btn btn-outline-light" />
             </div>
           </div>
-          <div className="relative hidden min-h-[280px] md:block">
+          <div className="relative hidden min-h-[17.5rem] md:block">
             <Photo name={photo} alt={photoAlt} sizes="(min-width: 768px) 45vw, 100vw" />
           </div>
         </div>
