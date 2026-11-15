@@ -7,7 +7,7 @@ import { isDemoForm } from "../lib/inquiry.ts";
 export default function Privacy() {
   const controller = company.legalName || company.name;
   const email = hasEmail ? company.email : placeholders.email;
-  const credits = [...new Map(Object.values(photos).map((p) => [p.source, p])).values()];
+  const credits = Object.values(photos).filter((p) => p.source);
 
   return (
     <>
@@ -83,8 +83,8 @@ export default function Privacy() {
               ši politika bus atnaujinta ir prieš juos įrašant bus prašoma jūsų sutikimo.
             </p>
             <p>
-              Nuotraukos įkeliamos iš Pexels serverių (images.pexels.com), todėl jūsų naršyklė, kaip ir lankantis bet kurioje svetainėje,
-              perduoda šiam paslaugų teikėjui IP adresą ir techninę užklausos informaciją.
+              Šriftai ir nuotraukos įkeliami iš pačios svetainės serverio – trečiųjų šalių turinio (pvz. žemėlapių, vaizdo įrašų ar
+              reklamos) puslapiuose nėra.
             </p>
 
             <h2 id="nuotraukos">8. Nuotraukų šaltiniai</h2>

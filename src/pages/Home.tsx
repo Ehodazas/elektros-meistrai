@@ -1,9 +1,10 @@
 import { Link } from "react-router";
 import {
   AlertTriangle, ArrowRight, ArrowUpRight, Building, Building2, CalendarCheck, CarFront, Check, ClipboardList, FileText, Flame, Gauge,
-  House, MapPin, MessageSquare, Plug, PowerOff, Radar, Ruler, ShieldCheck, Sparkles, Wrench, Zap, ZapOff,
+  House, MapPin, MessageSquare, Plug, PowerOff, Radar, Ruler, Sparkles, Wrench, Zap, ZapOff,
 } from "lucide-react";
 import Photo from "../components/Photo.tsx";
+import WireEdge from "../components/WireEdge.tsx";
 import PhoneLink from "../components/PhoneLink.tsx";
 import CtaBand from "../components/CtaBand.tsx";
 import QuickCallback from "../components/QuickCallback.tsx";
@@ -27,13 +28,6 @@ const steps = [
   { icon: Ruler, title: "Apžiūra", text: "Atvykstame suderintu laiku, apžiūrime objektą ir aptariame jūsų poreikius bei galimus sprendimus." },
   { icon: ClipboardList, title: "Sąmata ir planas", text: "Pateikiame raštišką sąmatą su darbų apimtimi, medžiagomis ir preliminariu terminu." },
   { icon: Wrench, title: "Darbai ir pridavimas", text: "Atliekame darbus, patikriname instaliaciją, paaiškiname, kas padaryta, ir perduodame schemą." },
-];
-
-const reasons = [
-  { icon: ShieldCheck, title: "Elektros sauga", text: "Netinkamai atlikti elektros darbai gali sukelti gaisrą ar elektros smūgį. Profesionalas žino, kaip parinkti laidus ir apsaugas pagal apkrovas." },
-  { icon: FileText, title: "Reikalavimų laikymasis", text: "Elektros įrenginių įrengimą reglamentuoja teisės aktai. Tinkamai įrengta instaliacija svarbi ir parduodant būstą ar keičiant patalpų paskirtį." },
-  { icon: Ruler, title: "Matavimai, ne spėjimai", text: "Gedimai nustatomi matavimo prietaisais, todėl keičiama tik tai, kas iš tikrųjų sugedę." },
-  { icon: CalendarCheck, title: "Planuojamas rezultatas", text: "Aiški sąmata, darbų eiga ir terminas leidžia suderinti elektros darbus su kitais remonto etapais." },
 ];
 
 const urgentSigns = [
@@ -65,7 +59,8 @@ export default function Home() {
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-navy/80 to-transparent" aria-hidden="true" />
         </div>
 
-        <div className="wrap grid items-center gap-10 py-14 md:py-20 lg:min-h-[40rem] lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:py-24">
+        <WireEdge fill="#ffffff" />
+        <div className="wrap grid items-center gap-10 pt-12 pb-20 md:pt-20 md:pb-28 lg:min-h-[40rem] lg:grid-cols-[1.15fr_0.85fr] lg:gap-14 lg:pt-24 lg:pb-32">
           <div>
             <p className="eyebrow rise !text-amber">Elektriko paslaugos</p>
             <h1 className="rise rise-2 mt-4 text-[2.35rem] font-extrabold text-white sm:text-5xl xl:text-[3.6rem]">
@@ -113,31 +108,6 @@ export default function Home() {
             </li>
           ))}
         </ul>
-      </section>
-
-      {/* INTRO */}
-      <section className="py-16 md:py-24">
-        <div className="wrap grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-20">
-          <div data-reveal="left">
-            <p className="eyebrow">Apie {company.name}</p>
-            <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl lg:text-[2.75rem]">
-              Elektros darbai, kuriuos lengva suplanuoti ir kuriais galima pasitikėti.
-            </h2>
-          </div>
-          <div className="space-y-5 text-lg text-muted lg:pt-10" data-reveal="right">
-            <p>
-              Dirbame butuose, individualiuose namuose ir komercinėse patalpose. Kiekvieną darbą pradedame nuo apžiūros
-              ir aiškaus plano, o baigiame patikra ir paaiškinimu, kas buvo padaryta.
-            </p>
-            <p>
-              Jums nereikia išmanyti elektros – užtenka papasakoti, ko reikia. Pasiūlysime sprendimą, pateiksime sąmatą
-              ir darbus atliksime suderintu laiku.
-            </p>
-            <Link to="/apie-mus" className="link-arrow text-base">
-              Kaip dirbame <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
       </section>
 
       {/* SERVICES */}
@@ -355,36 +325,6 @@ export default function Home() {
               ))}
             </ol>
           </div>
-        </div>
-      </section>
-
-      {/* WHY PROFESSIONAL */}
-      <section className="border-y border-line bg-white py-16 md:py-24">
-        <div className="wrap grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <div className="lg:sticky lg:top-28 lg:self-start" data-reveal="left">
-            <p className="eyebrow">Kodėl profesionalas</p>
-            <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">Elektra – ne ta sritis, kur verta taupyti ant kokybės</h2>
-            <p className="mt-5 text-lg text-muted">
-              Elektros darbų klaidos dažnai nematomos iš karto, bet gali kainuoti brangiai. Todėl verta juos patikėti
-              žmonėms, kurie dirba atsakingai ir paaiškina savo sprendimus.
-            </p>
-            <div className="mt-8 hidden aspect-[4/3] overflow-hidden rounded-md lg:block">
-              <Photo name="breakerGloves" alt="Elektrikas su apsauginėmis pirštinėmis tikrina automatinius jungiklius" sizes="480px" />
-            </div>
-          </div>
-          <ul className="divide-y divide-line">
-            {reasons.map((r, i) => (
-              <li key={r.title} data-reveal style={stagger(i)} className="flex gap-5 py-7 first:pt-0 last:pb-0">
-                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-sm bg-blue/10 text-blue" aria-hidden="true">
-                  <r.icon className="h-6 w-6" />
-                </span>
-                <div>
-                  <h3 className="text-xl font-bold">{r.title}</h3>
-                  <p className="mt-2 text-muted">{r.text}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 

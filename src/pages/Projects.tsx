@@ -7,6 +7,7 @@ import CtaBand from "../components/CtaBand.tsx";
 import { categoryLabels, projects, type Project, type ProjectCategory } from "../data/projects.ts";
 import { company } from "../data/company.ts";
 import { stagger } from "../lib/stagger.ts";
+import { useHydrated } from "../lib/useHydrated.ts";
 
 const filters: { value: "visi" | ProjectCategory; label: string }[] = [
   { value: "visi", label: "Visi darbai" },
@@ -18,8 +19,10 @@ const filters: { value: "visi" | ProjectCategory; label: string }[] = [
 
 export default function Projects() {
   const [params, setParams] = useSearchParams();
-  const active = (filters.find((f) => f.value === params.get("kategorija"))?.value ?? "visi") as (typeof filters)[number]["value"];
-  const openId = params.get("projektas");
+  // Query-dependent state only after hydration, so it matches the prerendered "all projects" HTML.
+  const hydrated = useHydrated();
+  const active = (hydrated ? filters.find((f) => f.value === params.get("kategorija"))?.value ?? "visi" : "visi") as (typeof filters)[number]["value"];
+  const openId = hydrated ? params.get("projektas") : null;
   const open = projects.find((p) => p.id === openId) ?? null;
   const visible = active === "visi" ? projects : projects.filter((p) => p.category === active);
 

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router";
 import { ChevronRight } from "lucide-react";
+import WireEdge from "./WireEdge.tsx";
 
 type Crumb = { to?: string; label: string };
 
@@ -30,7 +31,8 @@ export default function PageHeader({
           maskImage: "linear-gradient(to left, black, transparent 70%)",
         }}
       />
-      <div className="wrap relative py-14 md:py-20">
+      <WireEdge />
+      <div className="wrap relative pt-14 pb-20 md:pt-20 md:pb-28">
         <nav aria-label="Naršymo kelias" className="mb-8 text-sm text-white/60">
           <ol className="flex flex-wrap items-center gap-1.5">
             {crumbs.map((c, i) => (

@@ -40,6 +40,11 @@ export function useReveal() {
     };
 
     const start = window.setTimeout(collect, 0);
+    // Safety net for layout changes without a scroll event (accordions opening, images
+    // loading above) – cheap, and only runs while something is still waiting.
+    const poll = window.setInterval(() => {
+      if (pending.size > 0) check();
+    }, 400);
     const mo = new MutationObserver(collect);
     mo.observe(document.getElementById("turinys") ?? document.body, { childList: true, subtree: true });
     window.addEventListener("scroll", schedule, { passive: true });
@@ -47,6 +52,7 @@ export function useReveal() {
 
     return () => {
       clearTimeout(start);
+      clearInterval(poll);
       clearTimeout(timer);
       mo.disconnect();
       window.removeEventListener("scroll", schedule);

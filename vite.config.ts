@@ -4,13 +4,17 @@ import tailwindcss from "@tailwindcss/vite";
 
 // BASE_PATH: "/" for Netlify / Vercel / own domain,
 // "/<repo-name>/" for GitHub Pages project sites.
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, isSsrBuild }) => {
   const env = loadEnv(mode, process.cwd(), "");
   return {
     base: env.BASE_PATH || "/",
     plugins: [react(), tailwindcss()],
     define: {
       "import.meta.env.VITE_SITE_URL": JSON.stringify(env.SITE_URL || ""),
+    },
+    build: {
+      // The SSR bundle (used only for prerendering) doesn't need the public/ assets.
+      copyPublicDir: !isSsrBuild,
     },
   };
 });

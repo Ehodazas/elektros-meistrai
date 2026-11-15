@@ -10,28 +10,13 @@ export default function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="bg-navy text-white/75">
-      {/* Contact strip */}
-      <div className="border-b border-white/10">
-        <div className="wrap flex flex-col gap-6 py-10 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="font-display text-2xl font-bold text-white md:text-[1.75rem]">Reikia elektriko?</p>
-            <p className="mt-1">Aprašykite darbus – atsakysime ir suderinsime apžiūros laiką.</p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <PhoneLink className="btn btn-outline-light" />
-            <Link to="/kontaktai#uzklausa" className="btn btn-primary">
-              Gauti pasiūlymą
-            </Link>
-          </div>
-        </div>
-      </div>
-
       <div className="wrap grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
         <div>
           <Logo light />
           <p className="mt-5 max-w-xs text-[0.95rem]">
             Elektros instaliacija, gedimų diagnostika, elektros skydai ir apšvietimas namams ir verslui.
           </p>
+          <Link to="/kontaktai#uzklausa" className="btn btn-primary mt-6">Gauti pasiūlymą</Link>
         </div>
 
         <nav aria-label="Svetainės puslapiai">
@@ -67,7 +52,7 @@ export default function Footer() {
               {hasEmail ? (
                 <a href={`mailto:${company.email}`} className="hover:text-amber">{company.email}</a>
               ) : (
-                <span>{placeholders.email} <span className="text-white/45">(pavyzdys)</span></span>
+                <span>{placeholders.email} <span className="text-white/65">(pavyzdys)</span></span>
               )}
             </li>
             <li className="flex items-start gap-2">
@@ -83,7 +68,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="wrap flex flex-col gap-3 py-6 text-sm text-white/55 md:flex-row md:items-center md:justify-between">
+        <div className="wrap flex flex-col gap-3 py-6 text-sm text-white/70 md:flex-row md:items-center md:justify-between">
           <p>
             © {year} {company.legalName || company.name}
             {company.companyCode && <>, įm. k. {company.companyCode}</>}

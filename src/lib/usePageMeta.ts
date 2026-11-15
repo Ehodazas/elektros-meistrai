@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router";
 import { seoFor } from "../data/seo.ts";
-import { photoUrl } from "../data/photos.ts";
 
 const SITE_URL = (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, "") ?? "";
 
@@ -28,8 +27,8 @@ export function usePageMeta() {
     setMeta("name", "description", seo.description);
     setMeta("property", "og:title", seo.title);
     setMeta("property", "og:description", seo.description);
-    if (seo.ogImage) {
-      setMeta("property", "og:image", photoUrl({ src: seo.ogImage, width: 1200, height: 630, author: "" }, 1200));
+    if (seo.ogImage && SITE_URL) {
+      setMeta("property", "og:image", `${SITE_URL}/images/og-${seo.ogImage}.jpg`);
     }
     const isNotFound = seo.path === "/404";
     setMeta("name", "robots", isNotFound ? "noindex" : "index, follow");

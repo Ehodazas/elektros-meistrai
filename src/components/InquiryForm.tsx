@@ -19,10 +19,14 @@ const MIN_FILL_MS = 2500;
 export default function InquiryForm() {
   const [params] = useSearchParams();
   const preset = params.get("paslauga") ?? "";
-  const [data, setData] = useState<InquiryData>(() => ({
-    ...emptyInquiry,
-    paslauga: (formServiceOptions as readonly string[]).includes(preset) ? preset : "",
-  }));
+  const [data, setData] = useState<InquiryData>(emptyInquiry);
+
+  // Preselect the service from ?paslauga=… after hydration (the prerendered HTML has no query).
+  useEffect(() => {
+    if ((formServiceOptions as readonly string[]).includes(preset)) {
+      setData((d) => (d.paslauga ? d : { ...d, paslauga: preset }));
+    }
+  }, [preset]);
   const [errors, setErrors] = useState<InquiryErrors>({});
   const [touched, setTouched] = useState<Partial<Record<keyof InquiryData, boolean>>>({});
   const [status, setStatus] = useState<Status>("idle");

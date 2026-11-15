@@ -10,6 +10,7 @@
  */
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
+import { pathToFileURL } from "node:url";
 import { loadEnv } from "vite";
 import { pages, notFoundSeo, type PageSeo } from "../src/data/seo.ts";
 import { company } from "../src/data/company.ts";
@@ -28,7 +29,7 @@ if (!SITE_URL) {
 const esc = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-const pexelsUrl = (id: number) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop`;
+const ogUrl = (key: string) => `${siteUrl}/images/og-${key}.jpg`;
 const pageUrl = (p: PageSeo) => siteUrl + (p.path === "/" ? "/" : `${p.path}/`);
 
 function headFor(p: PageSeo, opts: { noindex?: boolean } = {}): string {
@@ -46,9 +47,17 @@ function headFor(p: PageSeo, opts: { noindex?: boolean } = {}): string {
   if (!opts.noindex) {
     tags.push(`<link rel="canonical" href="${pageUrl(p)}" />`, `<meta property="og:url" content="${pageUrl(p)}" />`);
   }
-  if (p.ogImage) tags.push(`<meta property="og:image" content="${esc(pexelsUrl(p.ogImage))}" />`);
-  if (p.path === "/") tags.push(jsonLd());
+  if (p.ogImage) tags.push(`<meta property="og:image" content="${esc(ogUrl(p.ogImage))}" />`, `<meta property="og:image:width" content="1200" />`, `<meta property="og:image:height" content="630" />`);
+  if (p.path === "/") tags.push(heroPreload(), jsonLd());
   return tags.join("\n    ");
+}
+
+/** Preload the home hero photo (the LCP element) so it starts downloading before CSS/JS. */
+function heroPreload(): string {
+  const gen = JSON.parse(readFileSync("src/data/photos.generated.json", "utf8")) as Record<string, { widths: number[] }>;
+  const base = env.BASE_PATH || "/";
+  const srcset = gen.heroPanel.widths.map((w) => `${base}images/heroPanel-${w}.webp ${w}w`).join(", ");
+  return `<link rel="preload" as="image" type="image/webp" imagesrcset="${srcset}" imagesizes="100vw" fetchpriority="high" />`;
 }
 
 function jsonLd(): string {
@@ -57,7 +66,7 @@ function jsonLd(): string {
     "@type": "Electrician",
     name: company.legalName || company.name,
     url: siteUrl + "/",
-    image: pexelsUrl(27928762),
+    image: ogUrl("heroPanel"),
   };
   if (company.phone) data.telephone = company.phone;
   if (company.email) data.email = company.email;
@@ -75,7 +84,16 @@ const template = readFileSync(join(DIST, "index.html"), "utf8");
 const SEO_BLOCK = /<!--seo:start-->[\s\S]*?<!--seo:end-->/;
 if (!SEO_BLOCK.test(template)) throw new Error("SEO markers not found in dist/index.html");
 
-const render = (p: PageSeo, opts?: { noindex?: boolean }) => template.replace(SEO_BLOCK, headFor(p, opts));
+if (!template.includes("<!--app-->")) throw new Error("<!--app--> marker not found in dist/index.html");
+
+// Server bundle built by `vite build --ssr src/entry-server.tsx --outDir dist-ssr`.
+const { render: renderApp } = (await import(pathToFileURL(join(process.cwd(), "dist-ssr", "entry-server.js")).href)) as {
+  render: (url: string) => string;
+};
+
+// Function replacers so "$" sequences in content are never treated as replacement patterns.
+const render = (p: PageSeo, opts?: { noindex?: boolean }) =>
+  template.replace(SEO_BLOCK, () => headFor(p, opts)).replace("<!--app-->", () => renderApp(p.path));
 
 for (const p of pages) {
   const file = p.path === "/" ? join(DIST, "index.html") : join(DIST, p.path, "index.html");

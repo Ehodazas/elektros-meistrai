@@ -10,11 +10,15 @@ type Props = {
   priority?: boolean;
 };
 
+/**
+ * Local, optimized WebP with responsive srcset. A tiny blurred version of the same photo is
+ * painted as the background, so there is never an empty grey box while it loads.
+ */
 export default function Photo({ name, alt, sizes = "100vw", className = "", priority = false }: Props) {
   const p = photos[name];
   return (
     <img
-      src={photoUrl(p, 1200)}
+      src={photoUrl(p, 960)}
       srcSet={photoSrcSet(p)}
       sizes={sizes}
       alt={alt}
@@ -23,7 +27,8 @@ export default function Photo({ name, alt, sizes = "100vw", className = "", prio
       loading={priority ? "eager" : "lazy"}
       decoding="async"
       fetchPriority={priority ? "high" : "auto"}
-      className={`block h-full w-full bg-slate-200 object-cover ${className}`}
+      style={{ backgroundImage: `url("${p.blur}")` }}
+      className={`block h-full w-full bg-slate-200 bg-cover bg-center object-cover ${className}`}
     />
   );
 }

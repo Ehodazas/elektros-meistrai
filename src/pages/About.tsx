@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { ArrowRight, Building2, CalendarCheck, Eye, MessageSquare, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Building2, CalendarCheck, Eye, FileText, MessageSquare, Ruler, ShieldCheck, Sparkles } from "lucide-react";
 import PageHeader from "../components/PageHeader.tsx";
 import Photo from "../components/Photo.tsx";
 import CtaBand from "../components/CtaBand.tsx";
@@ -37,6 +37,13 @@ const principles = [
     title: "Būstas ir verslas",
     text: "Dirbame butuose, namuose ir komercinėse patalpose. Verslo klientams darbus planuojame taip, kad jie kuo mažiau trukdytų įprastai veiklai.",
   },
+];
+
+const reasons = [
+  { icon: ShieldCheck, title: "Elektros sauga", text: "Netinkamai atlikti elektros darbai gali sukelti gaisrą ar elektros smūgį. Profesionalas žino, kaip parinkti laidus ir apsaugas pagal apkrovas." },
+  { icon: FileText, title: "Reikalavimų laikymasis", text: "Elektros įrenginių įrengimą reglamentuoja teisės aktai. Tinkamai įrengta instaliacija svarbi ir parduodant būstą ar keičiant patalpų paskirtį." },
+  { icon: Ruler, title: "Matavimai, ne spėjimai", text: "Gedimai nustatomi matavimo prietaisais, todėl keičiama tik tai, kas iš tikrųjų sugedę." },
+  { icon: CalendarCheck, title: "Planuojamas rezultatas", text: "Aiški sąmata, darbų eiga ir terminas leidžia suderinti elektros darbus su kitais remonto etapais." },
 ];
 
 export default function About() {
@@ -113,6 +120,36 @@ export default function About() {
               Peržiūrėti paslaugas <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Why a professional */}
+      <section className="border-y border-line bg-white py-16 md:py-24">
+        <div className="wrap grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <div className="lg:sticky lg:top-28 lg:self-start" data-reveal="left">
+            <p className="eyebrow">Kodėl profesionalas</p>
+            <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">Elektra – ne ta sritis, kur verta taupyti ant kokybės</h2>
+            <p className="mt-5 text-lg text-muted">
+              Elektros darbų klaidos dažnai nematomos iš karto, bet gali kainuoti brangiai. Todėl verta juos patikėti
+              žmonėms, kurie dirba atsakingai ir paaiškina savo sprendimus.
+            </p>
+            <div className="mt-8 hidden aspect-[4/3] overflow-hidden rounded-md lg:block">
+              <Photo name="breakerGloves" alt="Elektrikas su apsauginėmis pirštinėmis tikrina automatinius jungiklius" sizes="480px" />
+            </div>
+          </div>
+          <ul className="divide-y divide-line">
+            {reasons.map((r, i) => (
+              <li key={r.title} data-reveal style={stagger(i)} className="flex gap-5 py-7 first:pt-0 last:pb-0">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-sm bg-blue/10 text-blue" aria-hidden="true">
+                  <r.icon className="h-6 w-6" />
+                </span>
+                <div>
+                  <h3 className="text-xl font-bold">{r.title}</h3>
+                  <p className="mt-2 text-muted">{r.text}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

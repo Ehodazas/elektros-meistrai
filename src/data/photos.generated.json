@@ -1,0 +1,323 @@
+{
+  "heroPanel": {
+    "width": 2400,
+    "height": 1800,
+    "widths": [
+      480,
+      960,
+      1600,
+      2400
+    ],
+    "blur": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAACwBACdASoYABIAPu1gqE4ppSOiMBgMATAdiWMAwoAQPoSWkl2Tiufe87h46QdwAPyP4h7GHFDxZKsxEMzwZbfbCw4c0P38i6UVNScISQYdlo4/vqMXte8wSiFAa4EsUmZz6WDxq9qSI0sfYYJOK7cB2cOLQRc5lQ/rIAEhgAA="
+  },
+  "socketsInstall": {
+    "width": 2400,
+    "height": 3595,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAAAQBQCdASoYACQAPu1iqE2ppaOiKq35MB2JQBlAAibKUJ+hVKaZi/kWFcrQyw5APaQAAP7w5YTxLiUXFNqtvz+jcpuze5lgdRyFHq8IrccOVdPc/ansf8fC7k3gVGffHc0NfT3hRLcgnkEAOVWh0VjGvK56AhgDpQEhBegSvTOJqAAA"
+  },
+  "switchInstall": {
+    "width": 2400,
+    "height": 3595,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAADQBACdASoYACQAPuliqE2pJaQiMAqpIB0JZwDNSCvNC7L+tgJ1f6wtSgOaCMVrAAD+7YebPi9z7+U7Fekj8WjAA4Z97yHe2eAAJJe5Zb67BQGvnUVaVJIIKIjzu3EbB9OLkF+8166HZ0jawKwzwAAA"
+  },
+  "socketsPliers": {
+    "width": 2400,
+    "height": 3595,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAADQBACdASoYACQAPu1mq08ppaOiJW5hMB2JYwDLaDqE53+u/wpDtDZVqejh+q4YAAD+7qEsnnohMstr4QqSX+Da3Jt9X9vUm57npunPF2KfjzDiJ0qKCrbIhHgzCMr7XXLvGoQp08ruhWE15qGzCcYGXe5SrVg0mBFcLhH9xyBHZBDLHQAAAA=="
+  },
+  "wallWires": {
+    "width": 2400,
+    "height": 1600,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAACQAwCdASoYABAAPu1orU2ppqSiMAgBMB2JYgAAW+siElBZB5XQAP7xxO1OaJoVJ9Rze85Lcf4aW/pGkQ/DsQPUP9EPCP9v6rmLaLc/aqSNTPgAAAA="
+  },
+  "wallWiring": {
+    "width": 2400,
+    "height": 3600,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAACwBACdASoYACQAPu1mrE2ppakjKqwBMB2JZQDQGFFW1mTf7mWwFLyDXwDUYagAAP7yn3IzbRyoHr21xOlRNMmHyEQ7md31WhTszjPtp1evh464pMRSvv4AAAA="
+  },
+  "multimeterPanel": {
+    "width": 2252,
+    "height": 4003,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRgYBAABXRUJQVlA4IPoAAABwBwCdASoYACsAPu1mpU4ppaMiMBVdUTAdiUAYboE3coWqwCPixGZvEBFwBHEcWvY1PwbAqh5RBWFbNiwGFa+vYzKJkAD+0+shRuzp2mMPDDjIu64nJiLH176KO28IyZ10yPNdhf1vlR26MhgmuEpa+e54JIfKlsB95fxjL0l9s4ULXJ6u2PLbfi2QWb3N6WW281fDehyDo9tiBO4pBCnFMHTJ/yU7gXp9y8qM0zzgr8mIZzbH5FAkTWv2tdjR9CwtdkzykAEzOjEPIcRdoUJUlEEdPAhlqMpua6H0xXwxXqhv2wF1N9nGELnUXfzt/vXHdjImK2m9gAAA"
+  },
+  "multimeterBox": {
+    "width": 2400,
+    "height": 1266,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAADwAwCdASoYAA0APu1mqk2ppaQiMAgBMB2JaAC2yBdM1nDaSg7+w0iAAP7RyRqkrIvDAug9v7x4Hg1aueY+mA92Nc9rwda0Ss1UTdDghennKFjwoUSIvg7NMjQENopnCu//MPxC/8kLrpK3Z5U4/lYAAAA="
+  },
+  "breakerPanel": {
+    "width": 2400,
+    "height": 1494,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADQAwCdASoYAA8APu1yrU+pp6QiMAgBMB2JaQDMHCHNEtr5nvp4RoAA/eLDz3VQCPptm444X4Y3vcoM17vsKjIQqb0wjBY9u7JrjIVDPeQAAA=="
+  },
+  "switchboardHand": {
+    "width": 2400,
+    "height": 1597,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAAAQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JYwC06Bekvxz60+Iegjn9iAD+6pHU262B3SsdKsWlBF7PAjuyHFWj8Ik/1Yx5a2gt1V2zR+PaatVapiMV689QtVLIalCHmBex+Lyye/gBZiWs5YtVTgAA"
+  },
+  "ledHall": {
+    "width": 2400,
+    "height": 1602,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADQAwCdASoYABAAPu1mq04ppaQiMAgBMB2JaQAAWp/oXSul7PYKPKQA/tcZroixL0KgduTy/63uDMzRFtFRyW5oZdtjIIv0uJeAAA=="
+  },
+  "ledHallWhite": {
+    "width": 2400,
+    "height": 1602,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADwAwCdASoYABAAPu1oqk6ppiQiMAgBMB2JaQAAUz5RhJAdNKlYjBgAAP33aMtxONwchK+E/bUGnS5az+tFUDn5kwiaAGCL12UH1CgA"
+  },
+  "ceilingLamp": {
+    "width": 2400,
+    "height": 1600,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADwAwCdASoYABAAPu1mqk4ppaOiMAgBMB2JYwCzgA7A9xGlLXhltj8AAP7uoKqHcgBw9bpMRLBgwWvgFuExXxpnyadFk2H6OkiH6Qh1gGiKJjWjo1wPAn2dcNoYAAAA"
+  },
+  "residentialFuseBox": {
+    "width": 2400,
+    "height": 1597,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAAAQBACdASoYABAAPu1yrU+pp6QiMAgBMB2JZQDA3Bwcyb2RfEsmVXaywAD+ZU6F+8Z/s3WnFNzZCSvOYxXMSrR36+jjyICWq+odaP7LwTbsoeyC89pi07zg5yqkVS+XAwwpiW3cU8RlraOAAAA="
+  },
+  "drillOutlet": {
+    "width": 2400,
+    "height": 3600,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAADwBQCdASoYACQAPu1qsE6ppiUiKqoBMB2JZQAAPZCDf0Dh1xadmSB6BkzIcO4lvszu3X4J4q34AAD+8dv+ouDDLeQHlXUaKm2+mVmRgkxD+vwoEl9AaNjn918Bplub8JZGUByecYx9H/eQoCpqHadPXM3OHxKZdLjTAAAA"
+  },
+  "socketWindow": {
+    "width": 2400,
+    "height": 1602,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAACwAwCdASoYABAAPu1krU2ppaSiMAgBMB2JaQAASi+XzBpp5GtygAD+79ZHj8QcQwSy/1Sushr+RMOxCqzJbh5ZO7YvDgAA"
+  },
+  "renovationSite": {
+    "width": 2400,
+    "height": 3598,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAAAwBgCdASoYACQAPu1oqk4ppiOiKqwBMB2JZQC2yBQRirYQCHewPiyCGI9dJzM8CR3z2pqMzWYs5IEAAP6N+oKb8o+DEYavfZIkdUfwKF123Bpyy9nDf04KunbU/TFBypfKzs0pR02mqJzenEfI3Kq9kn5/HtiYb/19U6rdi1Z3XXnVRK+6YCGtCEhBF+yqy7TWsr3tE9UNpHVsfGQAAA=="
+  },
+  "openSocket": {
+    "width": 2400,
+    "height": 3595,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAAAQBgCdASoYACQAPs1Ynk2npaKiOrzIAPAZiWUAxnwn3WKjK9/UONX0fKr7ljnewLQ5YimARbYz1AAA/ujvqA3xucyWOWv1oLquI+UMh+0+Ga9bfpSVIpMWXhs8VTo8n4cvluNeFrV1jcInEi5y0j4tmgfpAwD8medS5c8FHnFrdgAA"
+  },
+  "modernPanel": {
+    "width": 2400,
+    "height": 2549,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAwBQCdASoYABkAPt1apE2opSOiN/qoARAbiWMAw3AgdIccQNXw5wKxzxQUmCHj0MoSAAD+mbzvTF29HHK/JcTHXx8htyW5IjgmoRT6iuivuV+SmQ/U9Mu/H+QgsG41qKWzBYwAAAA="
+  },
+  "switchbox": {
+    "width": 2400,
+    "height": 3595,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAABwBQCdASoYACQAPt1ao02opSMiNUgBEBuJZwDM0Cza8Fvm09fjVrYNFWAFgbC0o2xttvBIAP7eWncPe+Rzt+4X/zkyGdbNiMfzZXGtkbOOuvI2+S/JwJHizOwM4CJIB9UZxhS6Yp5C+wAA"
+  },
+  "kitchenIsland": {
+    "width": 2400,
+    "height": 1624,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAAAQBACdASoYABAAPu1kqU2ppaQiMAgBMB2JYgCdMoADASyIVmmiO1aEAAD40jKS1xWcKePYYCnNjKOocV8FpefPMvfFfe1s5SZBFi7RNCqAydNXkIDxH91RgFVP20wzXxVeDpJ/VuitVAgvDWAAAA=="
+  },
+  "kitchenPendant": {
+    "width": 2400,
+    "height": 1601,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAwAwCdASoYABAAPu1krU2ppaSiMAgBMB2JZQAAG4cgLfzWAP6xVVfA3B3V3Pv3oxL0e0fHKfrD4DscJZugDYM0kxRGbZqSBtgRJvHoDNDrp88b+g9YP73oVAAAAA=="
+  },
+  "officeLamps": {
+    "width": 2400,
+    "height": 1602,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAAAwBACdASoYABAAPu1mq04ppaQiMAgBMB2JZQDG9BuL7uZKWNU/A5dybwAA901WwaEniSty+6sXQp7Al+jeDwImkYdJNtVrb3mkaO2fQh2F3ayqB+3iPyFKGHeZCQx/0S45eYAA"
+  },
+  "officeCeiling": {
+    "width": 2400,
+    "height": 3600,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAABQBgCdASoYACQAPt1ao02opSMiNVv8ARAbiWUAzrBo/8p4Q3d+520owo85L76IwPzf1dpH5bfwqyDQnAD+/Et6z/yrQUj4p16MCGuh5fKnZcOBg85tMZdAy/C7LP5va6vqXFB4VLAutJ1qJCWzcn7X9eHiG3Rp2oV1jQKyo60fVqRRMqNWiCLD5P/KQyevgAA="
+  },
+  "houseDusk": {
+    "width": 2400,
+    "height": 1602,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAACwAwCdASoYABAAPu1krU6ppaSiMAgBMB2JQBibA+XvBxLwOynqwAD+VHJAFDsmazeKZ9zGtFBBvHO++VBPsdxwNTOgW/FOv+y/qfkv7DgLYhss2HNIiCcbjYAAAA=="
+  },
+  "housePorch": {
+    "width": 2400,
+    "height": 3600,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRsAAAABXRUJQVlA4ILQAAABQBwCdASoYACQAPu1kqE+ppSOiMBVaqTAdiUAY5OeP6gySGyrDUMYVtEvttPcd8Z1TXBBhupBMoR9MKPN1LljEcuMAAP7ynqapKcW96D0a0Cn0InyKP7MvjOtkLpLmGuwbK5Cf/X7nrbQhlF5UN3mE3VCaL0n27Tg0Ouad/jteqkv4USlmESI/MPJvLH6WkbfmlrnD4R7SwpAeVUP1Jb+bEFtexAmleYfiS04OClYq41ZgAAA="
+  },
+  "closetLed": {
+    "width": 2400,
+    "height": 3200,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAABQBQCdASoYACAAPu1qsFCppaSiqAqpMB2JZwDKAA9kFlG6xdbvPzvyC7g/PzghqVkGIAAA/i8E3dhnOUCi+L55KsHU5vUUZuuoLN0Sp1X8QsXomEL40aHNf8LDWBm4mGoKpFW+hYyYPElg2oTDP7CdApDH1p6xM8NEgm26/i6B9bthiQIx09TdEoVXQAAA"
+  },
+  "breakerGloves": {
+    "width": 2400,
+    "height": 3197,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAADQBQCdASoYACAAPu1srVEppiQiqAqpMB2JQBftSqAlgSLEp+rYkBclTChf2lVrwr/bVKb5GiRwAP7St0o/nJ34qpvbAvI+AsSmB27vcQ9Xocqrmwx55/BzUsWlehqsrWlSjGmbh2uvx8R6crnVtnelCGGAcpeqyz424yjtmf7a4i+XheaYvY5wgDXhUV7Rb0tboTY3eMnHDMk7pASyJD3X3Ihsa57tHKCAAA=="
+  },
+  "breakersCloseup": {
+    "width": 2400,
+    "height": 3600,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAADQBQCdASoYACQAPuFeo02opSMiNVv4ARAcCWMAt7gf4lK6dXdt6yQ3zg3pGbF1fqt6wFh5MVwAAP7rk/wQmMlzbJ8auxivEbjdT5MxJUItmFsw6dLmTBJWRRVxX+PtjqAWK0beUwLrGck89s9RP5j1Rd2dWuIle9qu6XKXiLYaz8Ze/vjioP0pyUXuAMfjcAA="
+  },
+  "cablesHands": {
+    "width": 2400,
+    "height": 1600,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAAAQBACdASoYABAAPu1krU2ppaSiMAgBMB2JQBOgAovwk7DQjysZUzPFYAD+jEBith2l6AvepCiRN0gxodV3+zyMx7lEaQ9Dp/LP6caa93UTXVyxqBCzOgiBF5M8iC2s8cd2WWmHRyqrn7NgAAA="
+  },
+  "villaWinter": {
+    "width": 2400,
+    "height": 1602,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADQAwCdASoYABAAPu1iqk2ppaQiMAgBMB2JQBOmUABT51pbUI7+D2gA/FAiVmRQNAFEpeY9PnT+lILx+/tJBQ6PEzwLXPwFYNQZsLSyLZaj6rkivRbXMWYJkSAf+AAA"
+  },
+  "roundLamps": {
+    "width": 2400,
+    "height": 3600,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "blur": "data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAACwBQCdASoYACQAPulgq02pJakiMBVdUSAdCWcAyJgsKahmKKEfEgZXc4zKRcthLEIc77zk0AAA/umG6k2e7WxETv5IcgLsk/2CZ+fPgbrkBBVUwsx4851xeC4a/ivBTCT+2vcY/BNxGNAQBJWdG1JG4Mk4vgiUBvKO8L6zjGoM3O0BE7HJ251iA3lckAAA"
+  }
+}

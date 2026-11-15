@@ -71,16 +71,23 @@ Privatumo politikoje patikslinkite saugojimo terminą ir duomenų valdytojo rekv
 
 ## 3. Nuotraukų keitimas
 
-Visos nuotraukos aprašytos [`src/data/photos.ts`](src/data/photos.ts). Dabar jos kraunamos iš Pexels (Pexels licencija / CC0).
+Nuotraukos laikomos pačioje svetainėje (`public/images/`) kaip suspausti **WebP** failai keliais dydžiais.
+Kraunantis rodoma neryški tos pačios nuotraukos versija, o ne tuščias plotas.
+Sąrašas ir autoriai: [`src/data/photos.data.ts`](src/data/photos.data.ts).
 
 Kaip pakeisti nuotrauką savo:
 
-1. Įdėkite failą į `public/images/`, pvz. `public/images/mano-skydas.jpg` (rekomenduojama ~2000 px pločio, suspausta JPG/WebP).
-2. Pakeiskite įrašą faile `photos.ts`:
-   ```ts
-   breakerPanel: { src: "images/mano-skydas.jpg", width: 2000, height: 1500, author: "ELEKTROS MEISTRAI" },
+1. Įdėkite failą į `photos-src/<raktas>.jpg` (arba .png / .webp), pvz. `photos-src/heroPanel.jpg`.
+   Raktai yra `photos.data.ts` faile (heroPanel, breakerPanel, kitchenIsland ir t. t.).
+2. Paleiskite:
+   ```bash
+   npm run photos
    ```
-3. Jei reikia, pakeiskite `alt` tekstą `services.ts` / `projects.ts` faile.
+   Skriptas sukuria WebP versijas, neryškų pakaitalą ir socialinių tinklų paveikslėlius (`og-*.jpg`).
+3. `photos.data.ts` faile to rakto `author` pakeiskite savo įmonės pavadinimu ir ištrinkite `pexels`.
+4. Jei reikia, pakeiskite `alt` tekstą `services.ts` / `projects.ts` faile.
+
+Sugeneruotus failus (`public/images/`, `photos.generated.json`) įkelkite į GitHub kartu su kodu.
 
 Realiai įmonei patariama naudoti savo darbų nuotraukas. Bankinės nuotraukos negali būti pateikiamos kaip įmonės darbai ar darbuotojai.
 
@@ -136,7 +143,8 @@ Tiesioginės nuorodos (pvz. `/paslaugos/elektros-skydai/`) veikia, nes build met
 
 ## SEO
 
-- Unikalūs `<title>`, aprašymai, kanoniniai URL ir Open Graph žymės kiekvienam puslapiui. Jie įrašomi į statinį HTML, todėl matomi ir be JavaScript.
+- **Visas puslapių turinys sugeneruojamas build metu** (prerender): paieškos sistemos gauna pilną HTML su tekstu, o ne tuščią puslapį.
+- Unikalūs `<title>`, aprašymai, kanoniniai URL ir Open Graph paveikslėliai kiekvienam puslapiui.
 - `sitemap.xml`, `robots.txt` generuojami automatiškai iš `SITE_URL`. **Būtinai nustatykite `SITE_URL` prieš diegdami.**
 - Pagrindiniame puslapyje yra `Electrician` JSON-LD tik su užpildytais duomenimis (telefonas, el. paštas, teritorija). Kai žinosite aptarnaujamą teritoriją, įrašykite ją į `serviceArea`.
 - Netikrų miestų puslapių ir atsiliepimų nėra.

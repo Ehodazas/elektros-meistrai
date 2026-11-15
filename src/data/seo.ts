@@ -11,8 +11,8 @@ export type PageSeo = {
   description: string;
   /** Įtraukti į sitemap.xml (numatyta – taip). */
   sitemap?: boolean;
-  /** Pagrindinė puslapio nuotrauka socialiniams tinklams (Pexels ID). */
-  ogImage?: number;
+  /** Nuotrauka socialiniams tinklams – raktas iš photos.data.ts (npm run photos sukuria og-<raktas>.jpg). */
+  ogImage?: string;
   priority?: number;
 };
 
@@ -24,7 +24,7 @@ export const pages: PageSeo[] = [
     title: `Elektriko paslaugos namams ir verslui | ${BRAND}`,
     description:
       "Elektros instaliacija, gedimų šalinimas, elektros skydų ir apšvietimo montavimas. Aiški sąmata, tvarkingas darbas ir dokumentai pridavus objektą.",
-    ogImage: 27928762,
+    ogImage: "heroPanel",
     priority: 1,
   },
   {
@@ -32,7 +32,7 @@ export const pages: PageSeo[] = [
     title: `Elektros darbai: visos paslaugos | ${BRAND}`,
     description:
       "Elektros instaliacijos įrengimas, gedimų diagnostika, elektros skydų montavimas, apšvietimas ir instaliacijos renovacija butuose, namuose ir komercinėse patalpose.",
-    ogImage: 5691588,
+    ogImage: "socketsInstall",
     priority: 0.9,
   },
   {
@@ -40,7 +40,7 @@ export const pages: PageSeo[] = [
     title: `Elektros instaliacijos įrengimas | ${BRAND}`,
     description:
       "Nauja elektros instaliacija namuose ir butuose: kabelių trasos, lizdai, jungikliai, grupių paskirstymas. Darbai pagal suderintą planą ir sąmatą.",
-    ogImage: 5691588,
+    ogImage: "socketsInstall",
     priority: 0.8,
   },
   {
@@ -48,7 +48,7 @@ export const pages: PageSeo[] = [
     title: `Elektros gedimų diagnostika ir šalinimas | ${BRAND}`,
     description:
       "Išmušantys automatai, neveikiantys lizdai, kaistantys laidai. Nustatome gedimo priežastį matavimais ir ją pašaliname.",
-    ogImage: 34054464,
+    ogImage: "multimeterPanel",
     priority: 0.8,
   },
   {
@@ -56,7 +56,7 @@ export const pages: PageSeo[] = [
     title: `Elektros skydų montavimas ir keitimas | ${BRAND}`,
     description:
       "Elektros skydų surinkimas, montavimas, keitimas ir modernizavimas: automatiniai jungikliai, nuotėkio srovės ir viršįtampių apsauga.",
-    ogImage: 28950842,
+    ogImage: "breakerPanel",
     priority: 0.8,
   },
   {
@@ -64,7 +64,7 @@ export const pages: PageSeo[] = [
     title: `Apšvietimo montavimas: vidaus, lauko, LED | ${BRAND}`,
     description:
       "Vidaus ir lauko apšvietimo montavimas, LED juostos ir šviestuvai, apšvietimo valdymas jutikliais ir išmaniais jungikliais.",
-    ogImage: 6238607,
+    ogImage: "ledHall",
     priority: 0.8,
   },
   {
@@ -72,7 +72,7 @@ export const pages: PageSeo[] = [
     title: `Elektros instaliacijos renovacija | ${BRAND}`,
     description:
       "Senos aliumininės ar nusidėvėjusios elektros instaliacijos keitimas, modernizavimas ir elektros saugos gerinimas butuose ir namuose.",
-    ogImage: 32497160,
+    ogImage: "residentialFuseBox",
     priority: 0.8,
   },
   {
@@ -80,7 +80,7 @@ export const pages: PageSeo[] = [
     title: `Atlikti darbai – pavyzdiniai projektai | ${BRAND}`,
     description:
       "Pavyzdiniai elektros instaliacijos, elektros skydų, apšvietimo ir renovacijos projektai. Filtruokite pagal darbų tipą.",
-    ogImage: 35573433,
+    ogImage: "modernPanel",
     priority: 0.7,
   },
   {
@@ -88,7 +88,7 @@ export const pages: PageSeo[] = [
     title: `Apie mus – kaip dirbame | ${BRAND}`,
     description:
       "Mūsų požiūris į elektros darbus: kokybė, elektros sauga, aiškus bendravimas, darbų planavimas ir dėmesys detalėms.",
-    ogImage: 7285965,
+    ogImage: "cablesHands",
     priority: 0.6,
   },
   {
@@ -96,7 +96,7 @@ export const pages: PageSeo[] = [
     title: `Kontaktai – užsakyti elektriką | ${BRAND}`,
     description:
       "Aprašykite elektros darbus ir gaukite pasiūlymą. Kontaktai, darbo laikas ir užklausos forma.",
-    ogImage: 5691590,
+    ogImage: "socketsPliers",
     priority: 0.7,
   },
   {
