@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #101d30;
+  --color-navy-2: #172840;
+  --color-blue: #2563eb;
+  --color-blue-dark: #1d4fd0;
+  --color-amber: #f5b841;
+  --color-amber-dark: #e5a52a;
+  --color-paper: #f8fafc;
+  --color-ink: #1e293b;
+  --color-muted: #55657b;
+  --color-line: #e2e8f0;
+
+  --font-display: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-navy;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  :focus-visible {
+    outline: 3px solid var(--color-blue);
+    outline-offset: 2px;
+  }
+  ::selection { background: var(--color-amber); color: var(--color-navy); }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-[1240px] px-4 sm:px-6 lg:px-8;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-display text-[0.8rem] font-bold uppercase tracking-[0.12em] text-blue;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-0.5 w-6 bg-amber;
+  }
+  .btn {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-sm px-6 font-display text-[0.95rem] font-bold
+      transition-[background-color,color,transform,box-shadow] duration-200 select-none;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { @apply bg-amber text-navy hover:bg-amber-dark; }
+  .btn-blue { @apply bg-blue text-white hover:bg-blue-dark; }
+  .btn-outline { @apply border border-current bg-transparent hover:bg-navy hover:text-white hover:border-navy; }
+  .btn-outline-light { @apply border border-white/40 bg-transparent text-white hover:border-white hover:bg-white/10; }
+
+  .link-arrow {
+    @apply inline-flex items-center gap-1.5 font-display font-bold text-blue;
+  }
+  .link-arrow svg { @apply transition-transform duration-200; }
+  .link-arrow:hover svg { transform: translateX(3px); }
+
+  .img-zoom img { @apply transition-transform duration-500 ease-out; }
+  .img-zoom:hover img { transform: scale(1.03); }
+
+  .prose-lt p + p { @apply mt-4; }
+  .prose-lt h2 { @apply mt-10 mb-3 text-2xl font-bold; }
+  .prose-lt ul { @apply mt-3 list-disc space-y-1.5 pl-5; }
+  .prose-lt a { @apply text-blue underline underline-offset-2; }
+}
+
+/* Hero entrance – once on load */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.rise { animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.rise-2 { animation-delay: 0.08s; }
+.rise-3 { animation-delay: 0.16s; }
+.rise-4 { animation-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
