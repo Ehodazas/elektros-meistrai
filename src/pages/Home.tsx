@@ -1,17 +1,20 @@
 import { Link } from "react-router";
 import {
-  AlertTriangle, ArrowRight, ArrowUpRight, Building, Building2, CalendarCheck, CarFront, Check, ClipboardList, FileText, Flame, Gauge,
+  AlertTriangle, ArrowRight, Building, Building2, CalendarCheck, CarFront, Check, ClipboardList, FileText, Flame, Gauge,
   House, MapPin, MessageSquare, Plug, PowerOff, Radar, Ruler, Sparkles, Wrench, Zap, ZapOff,
 } from "lucide-react";
 import Photo from "../components/Photo.tsx";
 import WireEdge from "../components/WireEdge.tsx";
+import HeroCircuit from "../components/HeroCircuit.tsx";
+import ServicesShowcase from "../components/ServicesShowcase.tsx";
+import ProcessTimeline from "../components/ProcessTimeline.tsx";
 import PhoneLink from "../components/PhoneLink.tsx";
 import CtaBand from "../components/CtaBand.tsx";
 import QuickCallback from "../components/QuickCallback.tsx";
 import StatsBand from "../components/StatsBand.tsx";
 import Testimonials from "../components/Testimonials.tsx";
 import Faq from "../components/Faq.tsx";
-import { extraServices, services } from "../data/services.ts";
+import { extraServices } from "../data/services.ts";
 import { categoryLabels, projects } from "../data/projects.ts";
 import { company } from "../data/company.ts";
 import { stagger } from "../lib/stagger.ts";
@@ -41,7 +44,6 @@ const extraIcons = { plug: Plug, car: CarFront, gauge: Gauge, motion: Radar, bui
 
 export default function Home() {
   const featured = [projects[0], projects[2], projects[5]];
-  const [main, ...rest] = services;
 
   return (
     <>
@@ -57,6 +59,7 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/40 lg:via-navy/80 lg:to-navy/10" aria-hidden="true" />
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-navy/80 to-transparent" aria-hidden="true" />
+          <HeroCircuit />
         </div>
 
         <WireEdge fill="#ffffff" />
@@ -123,40 +126,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="mt-10 grid gap-5 lg:grid-cols-2">
-            <Link to={`/paslaugos/${main.slug}`} data-reveal="zoom" className="img-zoom group relative flex min-h-[26rem] overflow-hidden rounded-md bg-navy lg:min-h-full">
-              <Photo name={main.image} alt={main.imageAlt} sizes="(min-width: 1024px) 600px, 100vw" className="absolute inset-0" />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/55 to-transparent" aria-hidden="true" />
-              <div className="relative mt-auto p-7 text-white sm:p-9">
-                <span className="font-display text-sm font-bold text-amber">01</span>
-                <h3 className="mt-2 text-2xl font-extrabold text-white sm:text-3xl">{main.title}</h3>
-                <p className="mt-3 max-w-md text-white/80">{main.summary}</p>
-                <span className="mt-5 inline-flex items-center gap-1.5 font-display font-bold text-amber">
-                  Plačiau <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
-                </span>
-              </div>
-            </Link>
-
-            <ul className="grid gap-5 sm:grid-cols-2">
-              {rest.map((s, i) => (
-                <li key={s.slug} data-reveal style={stagger(i)}>
-                  <Link
-                    to={`/paslaugos/${s.slug}`}
-                    className="img-zoom group flex h-full flex-col overflow-hidden rounded-md border border-line bg-paper transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-blue/50 hover:shadow-[0_18px_40px_-24px_rgba(16,29,48,0.45)]"
-                  >
-                    <div className="aspect-[16/10] overflow-hidden">
-                      <Photo name={s.image} alt={s.imageAlt} sizes="(min-width: 1024px) 290px, (min-width: 640px) 50vw, 100vw" />
-                    </div>
-                    <div className="flex flex-1 flex-col p-5">
-                      <span className="font-display text-xs font-bold text-blue">0{i + 2}</span>
-                      <h3 className="mt-1 text-lg font-bold">{s.title}</h3>
-                      <p className="mt-2 line-clamp-3 text-[0.95rem] text-muted">{s.summary}</p>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ServicesShowcase />
 
           {/* Extra services */}
           <div className="mt-16">
@@ -165,7 +135,7 @@ export default function Home() {
               {extraServices.map((x, i) => {
                 const Icon = extraIcons[x.icon];
                 return (
-                  <li key={x.title} data-reveal style={stagger(i % 3)} className="group flex gap-4 bg-white p-6 transition-colors hover:bg-paper">
+                  <li key={x.title} data-reveal style={stagger(i % 3)} className="spotlight group flex gap-4 bg-white p-6 [--spot:rgba(37,99,235,0.09)]">
                     <span className="grid h-11 w-11 shrink-0 place-items-center rounded-sm bg-navy text-amber transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105" aria-hidden="true">
                       <Icon className="h-5 w-5" />
                     </span>
@@ -207,7 +177,7 @@ export default function Home() {
           <ul className="grid gap-4 sm:grid-cols-2">
             {urgentSigns.map((u, i) => (
               <li key={u.title} data-reveal style={stagger(i)}
-                className="group rounded-md border border-white/10 bg-navy-2 p-6 transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-amber/50">
+                className="spotlight group rounded-md border border-white/10 bg-navy-2 p-6 transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-amber/50">
                 <u.icon className="h-8 w-8 text-amber transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
                 <p className="mt-4 font-display text-lg font-bold text-white">{u.title}</p>
                 <p className="mt-1 text-sm text-white/65">{u.text}</p>
@@ -310,21 +280,7 @@ export default function Home() {
             <p className="eyebrow">Darbo eiga</p>
             <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">Nuo užklausos iki veikiančios instaliacijos</h2>
           </div>
-          <div className="relative mt-12">
-            <div aria-hidden="true" className="current-line absolute top-0 right-0 left-0 hidden h-0.5 lg:block" />
-            <ol className="grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-              {steps.map((s, i) => (
-                <li key={s.title} data-reveal style={stagger(i)} className="group flex flex-col bg-white p-7 transition-colors hover:bg-paper">
-                  <div className="flex items-center justify-between">
-                    <s.icon className="h-6 w-6 text-blue transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
-                    <span className="font-display text-4xl font-extrabold text-line transition-colors group-hover:text-amber">{String(i + 1).padStart(2, "0")}</span>
-                  </div>
-                  <h3 className="mt-6 text-lg font-bold">{s.title}</h3>
-                  <p className="mt-2 text-[0.95rem] text-muted">{s.text}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
+          <ProcessTimeline steps={steps} />
         </div>
       </section>
 

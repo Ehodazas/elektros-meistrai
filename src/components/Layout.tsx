@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router";
 import { Clock, Info, MapPin } from "lucide-react";
 import Header from "./Header.tsx";
@@ -14,20 +14,56 @@ function useScrollOnNavigate() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
     if (hash) {
-      // Wait a frame so the target exists after route render.
-      requestAnimationFrame(() => {
+      // Wait a tick so the target exists after route render.
+      setTimeout(() => {
         document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView();
-      });
+      }, 0);
     } else {
       window.scrollTo(0, 0);
     }
   }, [pathname, hash]);
 }
 
+/** Cursor-following glow on `.spotlight` cards (one listener for the whole page). */
+function useSpotlight() {
+  useEffect(() => {
+    if (!window.matchMedia("(hover: hover)").matches) return;
+    const onMove = (e: PointerEvent) => {
+      const el = (e.target as Element | null)?.closest?.(".spotlight") as HTMLElement | null;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+      el.style.setProperty("--my", `${e.clientY - r.top}px`);
+    };
+    document.addEventListener("pointermove", onMove, { passive: true });
+    return () => document.removeEventListener("pointermove", onMove);
+  }, []);
+}
+
+/** Fade the page in on client-side navigation – but not on the first (prerendered) load. */
+function usePageTransition(): string {
+  const { pathname } = useLocation();
+  const first = useRef(true);
+  const [cls, setCls] = useState("");
+  useEffect(() => {
+    if (first.current) {
+      first.current = false;
+      return;
+    }
+    setCls("");
+    const t = setTimeout(() => setCls("page-in"), 0);
+    return () => clearTimeout(t);
+  }, [pathname]);
+  return cls;
+}
+
 export default function Layout() {
   usePageMeta();
   useScrollOnNavigate();
   useReveal();
+  useSpotlight();
+  const transition = usePageTransition();
+  const { pathname } = useLocation();
 
   return (
     <div className="flex min-h-dvh flex-col pb-[68px] lg:pb-0">
@@ -67,7 +103,9 @@ export default function Layout() {
 
       <Header />
       <main id="turinys" className="flex-1" tabIndex={-1}>
-        <Outlet />
+        <div key={pathname} className={transition}>
+          <Outlet />
+        </div>
       </main>
       <Footer />
       <MobileCallBar />
