@@ -1,45 +1,97 @@
-# Deploys to GitHub Pages on every push to main.
+# Publishes BOTH versions to one GitHub Pages site:
+#   main branch → https://<user>.github.io/<repo>/      (v1)
+#   v2 branch   → https://<user>.github.io/<repo>/v2/   (v2)
+# A push to main builds and deploys both. A push to v2 only re-runs this workflow on main
+# (the github-pages environment only accepts deployments from main), so the two never
+# overwrite each other. This file must be identical on main and v2.
+#
 # Settings → Pages → Source: "GitHub Actions".
 # Settings → Secrets and variables → Actions → Variables:
-#   SITE_URL   e.g. https://<user>.github.io/<repo>   (or your own domain)
-#   BASE_PATH  e.g. /<repo>/                          (or / for own domain)
+#   SITE_URL   e.g. https://<user>.github.io/<repo>   (or your own domain; v2 gets "/v2" appended)
+#   BASE_PATH  e.g. /<repo>/                          (or / for own domain; v2 gets "v2/" appended)
 #   VITE_FORM_ENDPOINT  optional, e.g. https://formspree.io/f/xxxxxxx
 name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, v2]
   workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
+  actions: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  BASE: ${{ vars.BASE_PATH || format('/{0}/', github.event.repository.name) }}
+
 jobs:
-  build:
+  # Push to v2 → ask main to rebuild and deploy both versions.
+  relay:
+    if: github.ref == 'refs/heads/v2'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - run: gh workflow run deploy.yml --repo "$GITHUB_REPOSITORY" --ref main
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout v1 (main)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: v1
+      - name: Checkout v2
+        uses: actions/checkout@v4
+        with:
+          ref: v2
+          path: v2
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: npm
-      - run: npm ci
-      - run: npm run build
+          cache-dependency-path: |
+            v1/package-lock.json
+            v2/package-lock.json
+
+      - name: Build v1
+        working-directory: v1
+        run: npm ci && npm run build
         env:
           SITE_URL: ${{ vars.SITE_URL }}
-          BASE_PATH: ${{ vars.BASE_PATH || format('/{0}/', github.event.repository.name) }}
+          BASE_PATH: ${{ env.BASE }}
           VITE_FORM_ENDPOINT: ${{ vars.VITE_FORM_ENDPOINT }}
+
+      - name: Build v2
+        working-directory: v2
+        run: npm ci && npm run build
+        env:
+          SITE_URL: ${{ vars.SITE_URL && format('{0}/v2', vars.SITE_URL) || '' }}
+          BASE_PATH: ${{ env.BASE }}v2/
+          VITE_FORM_ENDPOINT: ${{ vars.VITE_FORM_ENDPOINT }}
+
+      - name: Combine into one site
+        run: |
+          mkdir -p site/v2
+          cp -r v1/dist/. site/
+          cp -r v2/dist/. site/v2/
+          # Search engines only read the root robots.txt / sitemap; drop v2's copies.
+          rm -f site/v2/robots.txt
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: site
 
   deploy:
+    if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     environment:

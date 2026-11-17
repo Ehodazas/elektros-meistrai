@@ -8,6 +8,14 @@ Sukurta su React, Vite, TypeScript, Tailwind CSS, React Router ir Lucide.
 
 ## Versijos
 
+Abi versijos gyvos vienoje GitHub Pages svetainėje:
+
+- v1: https://ehodazas.github.io/elektros-meistrai/
+- v2: https://ehodazas.github.io/elektros-meistrai/v2/
+
+Workflow [`deploy.yml`](.github/workflows/deploy.yml) visada sukuria abi (iš `main` ir `v2` šakų) ir sujungia į vieną svetainę.
+Pakeitimai bet kurioje šakoje atnaujina atitinkamą versiją.
+
 - **v1** (žymė `v1.0.0`, šaka `main`) – pirmoji pilna versija.
 - **v2** (žymė `v2.0.0`, šaka `v2`) – techninio tikslumo dizaino kalba: sunumeruotos sekcijų žymės
   („01 / Paslaugos“), liniuotės skirtukai, ramesnės animacijos, užklausos asistentas „Kokia elektros problema?“,
