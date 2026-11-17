@@ -14,6 +14,7 @@
 
   --font-display: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", "Segoe UI Mono", Menlo, Consolas, monospace;
 
   --radius-sm: 4px;
   --radius-md: 6px;
@@ -47,13 +48,28 @@
   .wrap {
     @apply mx-auto w-full max-w-[77.5rem] px-4 sm:px-6 lg:px-8;
   }
+  /* Technical section identifier, e.g. "03 / Paslaugos": mono label with a junction node */
   .eyebrow {
-    @apply inline-flex items-center gap-2 font-display text-[0.8rem] font-bold uppercase tracking-[0.12em] text-blue;
+    @apply inline-flex items-center gap-2.5 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-blue;
   }
   .eyebrow::before {
     content: "";
-    @apply h-0.5 w-6 bg-amber;
+    @apply h-[7px] w-[7px] shrink-0 rotate-45 border-[1.5px] border-current;
   }
+  .eyebrow::after {
+    content: "";
+    @apply h-px w-8 bg-current opacity-40;
+  }
+
+  /* Technical ruler divider – hairline with tick marks, drawn once when revealed */
+  .tech-rule {
+    @apply relative h-3 w-full;
+    background:
+      linear-gradient(var(--color-line), var(--color-line)) left bottom / 100% 1px no-repeat,
+      repeating-linear-gradient(90deg, var(--color-line) 0 1px, transparent 1px 40px) left bottom / 100% 6px no-repeat;
+  }
+  .tech-rule-dark { --color-line: rgba(255, 255, 255, 0.14); }
+
   .btn {
     @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-sm px-6 font-display text-[0.95rem] font-bold
       transition-[background-color,color,transform,box-shadow] duration-200 select-none;
@@ -87,16 +103,18 @@
 /* Scroll reveal – only active once JS has added .reveal-ready */
 .reveal-ready [data-reveal] {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(14px);
   transition:
-    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
-    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
-  transition-delay: calc(var(--i, 0) * 90ms);
+    opacity 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: calc(var(--i, 0) * 60ms);
 }
-.reveal-ready [data-reveal="left"] { transform: translateX(-32px); }
-.reveal-ready [data-reveal="right"] { transform: translateX(32px); }
-.reveal-ready [data-reveal="zoom"] { transform: scale(0.96); }
+.reveal-ready [data-reveal="left"] { transform: translateX(-16px); }
+.reveal-ready [data-reveal="right"] { transform: translateX(16px); }
+.reveal-ready [data-reveal="zoom"] { transform: scale(0.98); }
 .reveal-ready [data-reveal].is-visible { opacity: 1; transform: none; }
+.reveal-ready .tech-rule[data-reveal] { opacity: 1; transform: scaleX(0); transform-origin: left; transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1); }
+.reveal-ready .tech-rule[data-reveal].is-visible { transform: none; }
 
 /* Signature wire along header edges – drawn once on load */
 @keyframes wire-draw {
@@ -148,6 +166,13 @@
 }
 .btn-primary:hover::after, .btn-blue:hover::after { transform: translateX(120%); }
 
+/* Inquiry assistant step change */
+@keyframes assist-in {
+  from { opacity: 0; transform: translateX(10px); }
+  to { opacity: 1; transform: none; }
+}
+.assist-in { animation: assist-in 0.25s ease-out both; }
+
 /* Page fade on route change */
 @keyframes page-in {
   from { opacity: 0; transform: translateY(8px); }
@@ -157,17 +182,10 @@
 
 /* Slow zoom on hero photo */
 @keyframes kenburns {
-  from { transform: scale(1.08); }
+  from { transform: scale(1.04); }
   to { transform: scale(1); }
 }
-.kenburns { animation: kenburns 14s ease-out both; }
-
-/* Pulse ring for floating call button */
-@keyframes ring {
-  0% { box-shadow: 0 0 0 0 rgba(245, 184, 65, 0.55); }
-  80%, 100% { box-shadow: 0 0 0 16px rgba(245, 184, 65, 0); }
-}
-.ring-pulse { animation: ring 2.4s ease-out infinite; }
+.kenburns { animation: kenburns 9s ease-out both; }
 
 /* Hero entrance – once on load */
 @keyframes rise {
@@ -186,6 +204,6 @@
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .kenburns, .ring-pulse, .wire-draw, .node-pop, .page-in { animation: none !important; }
+  .kenburns, .wire-draw, .node-pop, .page-in, .assist-in { animation: none !important; }
   .btn-primary::after, .btn-blue::after { display: none; }
 }

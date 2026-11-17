@@ -10,6 +10,7 @@ import {
   type InquiryErrors,
 } from "../lib/inquiry.ts";
 import { formObjectOptions, formServiceOptions } from "../data/services.ts";
+import { issueById } from "../data/issues.ts";
 import PhoneLink from "./PhoneLink.tsx";
 
 type Status = "idle" | "sending" | "success" | "error" | "demo";
@@ -18,15 +19,24 @@ const MIN_FILL_MS = 2500;
 
 export default function InquiryForm() {
   const [params] = useSearchParams();
-  const preset = params.get("paslauga") ?? "";
+  const query = params.toString();
   const [data, setData] = useState<InquiryData>(emptyInquiry);
-
-  // Preselect the service from ?paslauga=… after hydration (the prerendered HTML has no query).
+  // Pre-fill from the URL after hydration (the prerendered HTML has no query):
+  // ?paslauga=… from service pages, plus problema/objektas/miestas/aprasymas from the issue assistant.
   useEffect(() => {
-    if ((formServiceOptions as readonly string[]).includes(preset)) {
-      setData((d) => (d.paslauga ? d : { ...d, paslauga: preset }));
-    }
-  }, [preset]);
+    const p = new URLSearchParams(query);
+    const svc = p.get("paslauga") ?? "";
+    const obj = p.get("objektas") ?? "";
+    const issue = issueById(p.get("problema"));
+    setData((d) => ({
+      ...d,
+      paslauga: d.paslauga || ((formServiceOptions as readonly string[]).includes(svc) ? svc : ""),
+      objektas: d.objektas || ((formObjectOptions as readonly string[]).includes(obj) ? obj : ""),
+      miestas: d.miestas || (p.get("miestas") ?? "").slice(0, 100),
+      aprasymas: d.aprasymas || (p.get("aprasymas") ?? "").slice(0, 3000),
+      problema: issue ? issue.label : d.problema,
+    }));
+  }, [query]);
   const [errors, setErrors] = useState<InquiryErrors>({});
   const [touched, setTouched] = useState<Partial<Record<keyof InquiryData, boolean>>>({});
   const [status, setStatus] = useState<Status>("idle");
@@ -131,6 +141,15 @@ export default function InquiryForm() {
           Laukai, pažymėti <span className="text-red-600" aria-hidden="true">*</span>
           <span className="sr-only">žvaigždute</span>, yra privalomi.
         </p>
+
+        {data.problema && (
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 rounded-sm border border-amber/60 bg-amber/10 px-4 py-3 text-sm sm:col-span-2">
+            <span className="font-mono text-[0.7rem] font-semibold uppercase tracking-wider text-amber-dark">Pasirinkta problema</span>
+            <span className="font-semibold text-navy">{data.problema}</span>
+            <button type="button" onClick={() => setData((d) => ({ ...d, problema: "" }))}
+              className="ml-auto text-muted underline underline-offset-2 hover:text-navy">Pašalinti</button>
+          </div>
+        )}
 
         <Field label="Vardas" required error={errors.vardas} errId={id("vardas-err")} htmlFor={id("vardas")}>
           <input {...field("vardas")} type="text" autoComplete="name" required value={data.vardas}

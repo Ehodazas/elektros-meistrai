@@ -8,12 +8,12 @@ import WireEdge from "../components/WireEdge.tsx";
 import HeroCircuit from "../components/HeroCircuit.tsx";
 import ServicesShowcase from "../components/ServicesShowcase.tsx";
 import ProcessTimeline from "../components/ProcessTimeline.tsx";
-import PhoneLink from "../components/PhoneLink.tsx";
 import CtaBand from "../components/CtaBand.tsx";
 import QuickCallback from "../components/QuickCallback.tsx";
 import StatsBand from "../components/StatsBand.tsx";
 import Testimonials from "../components/Testimonials.tsx";
 import Faq from "../components/Faq.tsx";
+import IssueAssistant from "../components/IssueAssistant.tsx";
 import { extraServices } from "../data/services.ts";
 import { categoryLabels, projects } from "../data/projects.ts";
 import { company } from "../data/company.ts";
@@ -78,6 +78,10 @@ export default function Home() {
               </Link>
               <Link to="/paslaugos" className="btn btn-outline-light">Mūsų paslaugos</Link>
             </div>
+            <a href="#problema" className="rise rise-4 mt-5 inline-flex items-center gap-2 text-[0.95rem] text-white/80 underline-offset-4 hover:text-white hover:underline">
+              <span className="grid h-6 w-6 place-items-center rounded-full border border-amber/60 text-amber" aria-hidden="true">?</span>
+              Kilo gedimas? Pasirinkite problemą ir gaukite saugius patarimus
+            </a>
             <ul className="rise rise-4 mt-10 grid gap-x-6 gap-y-3 text-[0.95rem] text-white/85 sm:grid-cols-2">
               {["Raštiška sąmata prieš darbus", "Butai, namai ir verslas", "Darbai pagal galiojančius reikalavimus", "Švari darbo vieta po darbų"].map((t) => (
                 <li key={t} className="flex items-center gap-2.5">
@@ -116,9 +120,10 @@ export default function Home() {
       {/* SERVICES */}
       <section className="border-t border-line bg-white py-16 md:py-24">
         <div className="wrap">
+          <div className="tech-rule mb-10" data-reveal aria-hidden="true" />
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between" data-reveal>
             <div>
-              <p className="eyebrow">Paslaugos</p>
+              <p className="eyebrow">01 / Paslaugos</p>
               <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">Pagrindiniai elektros darbai</h2>
             </div>
             <Link to="/paslaugos" className="link-arrow">
@@ -151,39 +156,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* URGENT SIGNS */}
-      <section className="relative overflow-hidden bg-navy py-16 text-white md:py-24">
-        <div aria-hidden="true" className="pointer-events-none absolute -top-24 right-0 h-80 w-80 translate-x-1/3 rounded-full bg-amber/10 blur-3xl" />
-        <div className="wrap relative grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-16">
+      {/* URGENT SIGNS + ISSUE ASSISTANT */}
+      <section id="problema" aria-labelledby="urgent-h" className="scroll-mt-24 bg-navy py-16 text-white md:py-24">
+        <div className="wrap grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:gap-16">
           <div data-reveal="left">
-            <p className="eyebrow !text-amber">Kada nedelsti</p>
-            <h2 className="mt-4 text-3xl font-extrabold text-white sm:text-4xl">Ženklai, kad elektriko reikia kuo greičiau</h2>
+            <p className="eyebrow !text-amber">02 / Gedimai ir sauga</p>
+            <h2 id="urgent-h" className="mt-4 text-3xl font-extrabold text-white sm:text-4xl">Ženklai, kad elektriko reikia kuo greičiau</h2>
             <p className="mt-5 text-lg text-white/75">
               Tokie gedimai gali kelti gaisro ar elektros smūgio pavojų. Nebandykite jų taisyti patys ir nelaikykite
               išmušusio automato jėga.
             </p>
+            <ul className="mt-7 divide-y divide-white/10 border-y border-white/10">
+              {urgentSigns.map((u) => (
+                <li key={u.title} className="flex items-center gap-4 py-3.5">
+                  <u.icon className="h-5 w-5 shrink-0 text-amber" aria-hidden="true" />
+                  <p className="text-white"><span className="font-semibold">{u.title}</span> <span className="text-white/60">– {u.text}</span></p>
+                </li>
+              ))}
+            </ul>
             <div className="mt-7 flex gap-3 rounded-md border border-amber/40 bg-amber/10 p-5">
               <AlertTriangle className="mt-0.5 h-6 w-6 shrink-0 text-amber" aria-hidden="true" />
               <p className="text-white/90">
-                <strong className="text-white">Pirmiausia saugumas:</strong> jei kibirkščiuoja ar kaista – skyde išjunkite
-                atitinkamą automatinį jungiklį arba visą įvadą ir tik tada skambinkite.
+                <strong className="text-white">Pirmiausia saugumas:</strong> jei tai saugu ir jungiklis lengvai pasiekiamas,
+                atjunkite elektrą. Nelieskite laidų ir neardykite lizdų. Dūmai ar ugnis – išeikite ir skambinkite{" "}
+                <a href="tel:112" className="font-bold text-amber underline underline-offset-2">112</a>.
               </p>
             </div>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <PhoneLink className="btn btn-primary" />
-              <Link to="/paslaugos/gedimu-diagnostika" className="btn btn-outline-light">Gedimų diagnostika</Link>
-            </div>
+            <Link to="/paslaugos/gedimu-diagnostika" className="link-arrow mt-7 !text-amber">
+              Apie gedimų diagnostiką <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
           </div>
-          <ul className="grid gap-4 sm:grid-cols-2">
-            {urgentSigns.map((u, i) => (
-              <li key={u.title} data-reveal style={stagger(i)}
-                className="spotlight group rounded-md border border-white/10 bg-navy-2 p-6 transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-amber/50">
-                <u.icon className="h-8 w-8 text-amber transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
-                <p className="mt-4 font-display text-lg font-bold text-white">{u.title}</p>
-                <p className="mt-1 text-sm text-white/65">{u.text}</p>
-              </li>
-            ))}
-          </ul>
+          <div data-reveal="right">
+            <IssueAssistant />
+          </div>
         </div>
       </section>
 
@@ -191,7 +196,7 @@ export default function Home() {
       <section className="py-16 md:py-24">
         <div className="wrap">
           <div className="max-w-2xl" data-reveal>
-            <p className="eyebrow">Kam dirbame</p>
+            <p className="eyebrow">03 / Objektai</p>
             <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">Sprendimai būstui ir verslui</h2>
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -243,7 +248,7 @@ export default function Home() {
         <div className="wrap">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between" data-reveal>
             <div>
-              <p className="eyebrow !text-amber">Atlikti darbai</p>
+              <p className="eyebrow !text-amber">04 / Atlikti darbai</p>
               <h2 className="mt-4 text-3xl font-extrabold text-white sm:text-4xl">Pavyzdiniai projektai</h2>
               {company.demoMode && (
                 <p className="mt-3 max-w-xl text-sm text-white/60">
@@ -263,9 +268,9 @@ export default function Home() {
                   <div className="aspect-[4/5] overflow-hidden rounded-md bg-navy-2">
                     <Photo name={p.images[0].key} alt={p.images[0].alt} sizes="(min-width: 768px) 33vw, 100vw" />
                   </div>
-                  <p className="mt-4 text-sm font-semibold text-amber">{categoryLabels[p.category]}</p>
+                  <p className="mt-4 font-mono text-[0.7rem] uppercase tracking-wider text-amber">{categoryLabels[p.category]} · {p.objectType}</p>
                   <h3 className="mt-1 text-xl font-bold text-white group-hover:underline group-hover:underline-offset-4">{p.title}</h3>
-                  <p className="mt-2 text-[0.95rem] text-white/65">{p.summary}</p>
+                  <p className="mt-2 border-l-2 border-amber/70 pl-3 text-[0.95rem] text-white/70"><span className="sr-only">Tikslas: </span>{p.objective}</p>
                 </Link>
               </li>
             ))}
@@ -276,8 +281,9 @@ export default function Home() {
       {/* PROCESS */}
       <section className="py-16 md:py-24">
         <div className="wrap">
+          <div className="tech-rule mb-10" data-reveal aria-hidden="true" />
           <div className="max-w-2xl" data-reveal>
-            <p className="eyebrow">Darbo eiga</p>
+            <p className="eyebrow">05 / Darbo eiga</p>
             <h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">Nuo užklausos iki veikiančios instaliacijos</h2>
           </div>
           <ProcessTimeline steps={steps} />

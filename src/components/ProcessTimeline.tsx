@@ -43,11 +43,11 @@ export default function ProcessTimeline({ steps }: { steps: Step[] }) {
       {/* Wire: vertical on phones, horizontal on desktop */}
       <span aria-hidden="true" className="absolute top-2 bottom-2 left-6 w-0.5 bg-line lg:top-6 lg:right-[12.5%] lg:bottom-auto lg:left-[12.5%] lg:h-0.5 lg:w-auto">
         <span
-          className="absolute inset-0 origin-top bg-amber shadow-[0_0_12px_rgba(245,184,65,0.8)] lg:hidden"
+          className="absolute inset-0 origin-top bg-amber lg:hidden"
           style={{ transform: `scaleY(${p})` }}
         />
         <span
-          className="absolute inset-0 hidden origin-left bg-amber shadow-[0_0_12px_rgba(245,184,65,0.8)] lg:block"
+          className="absolute inset-0 hidden origin-left bg-amber lg:block"
           style={{ transform: `scaleX(${p})` }}
         />
       </span>
@@ -59,7 +59,7 @@ export default function ProcessTimeline({ steps }: { steps: Step[] }) {
           <li key={s.title} className="relative flex gap-5 lg:block lg:px-4 lg:text-center">
             <span
               className={`relative z-10 grid h-12 w-12 shrink-0 place-items-center rounded-full border-2 transition-[background-color,border-color,color,box-shadow] duration-500 lg:mx-auto ${
-                on ? "border-amber bg-navy text-amber shadow-[0_0_0_6px_rgba(245,184,65,0.18)]" : "border-line bg-white text-slate-400"
+                on ? "border-amber bg-navy text-amber" : "border-line bg-white text-slate-400"
               }`}
               aria-hidden="true"
             >

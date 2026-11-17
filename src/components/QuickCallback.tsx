@@ -11,6 +11,8 @@ export default function QuickCallback() {
   const [errors, setErrors] = useState<CallbackErrors>({});
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error" | "demo">("idle");
   const [trap, setTrap] = useState("");
+  // Phones/tablets: the form starts collapsed to keep the hero short (always open on desktop).
+  const [expanded, setExpanded] = useState(false);
   const startedAt = useRef(Date.now());
   const uid = useId();
 
@@ -74,7 +76,21 @@ export default function QuickCallback() {
         </p>
       )}
 
-      <form noValidate onSubmit={onSubmit} className="relative mt-5 grid gap-4" aria-label="Prašymas perskambinti">
+      {!expanded && (
+        <button
+          type="button"
+          onClick={() => {
+            setExpanded(true);
+            setTimeout(() => document.getElementById(`${uid}-v`)?.focus(), 0);
+          }}
+          className="btn btn-blue mt-5 w-full lg:hidden"
+          aria-controls={`${uid}-form`}
+          aria-expanded={false}
+        >
+          Palikti numerį
+        </button>
+      )}
+      <form id={`${uid}-form`} noValidate onSubmit={onSubmit} className={`relative mt-5 gap-4 lg:grid ${expanded ? "grid" : "hidden"}`} aria-label="Prašymas perskambinti">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
           <div>
             <label htmlFor={`${uid}-v`} className="text-sm font-semibold text-navy">Vardas</label>

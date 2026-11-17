@@ -6,6 +6,25 @@ Sukurta su React, Vite, TypeScript, Tailwind CSS, React Router ir Lucide.
 > **Demonstracinė svetainė.** „ELEKTROS MEISTRAI“ yra išgalvota įmonė. Kontaktai, projektai ir nuotraukos yra pavyzdiniai.
 > Realiai įmonei pakeiskite duomenis taip, kaip aprašyta toliau, ir išjunkite demonstracinį režimą.
 
+## Versijos
+
+- **v1** (žymė `v1.0.0`, šaka `main`) – pirmoji pilna versija.
+- **v2** (žymė `v2.0.0`, šaka `v2`) – techninio tikslumo dizaino kalba: sunumeruotos sekcijų žymės
+  („01 / Paslaugos“), liniuotės skirtukai, ramesnės animacijos, užklausos asistentas „Kokia elektros problema?“,
+  projektai kaip techniniai atvejai (tikslas / sprendimas / apimtis), suskleidžiama greita forma telefone.
+
+## Užklausos asistentas „Kokia elektros problema?“
+
+Pagrindiniame puslapyje, sekcijoje „Gedimai ir sauga“ (`/#problema`). Turinys – [`src/data/issues.ts`](src/data/issues.ts).
+
+1. Lankytojas pasirenka vieną iš 7 problemų.
+2. Mato trumpus **saugius** kitus žingsnius. Pavojingais atvejais (kaista lizdas, degėsių kvapas) pirmiausia
+   rodomas įspėjimas išeiti ir skambinti 112. Jokių taisymo ar matavimo instrukcijų, jokios „diagnozės“.
+3. Neprivalomai nurodo objekto tipą, miestą ir aprašymą → atsidaro užklausos forma su užpildytais laukais
+   ir pažymėta problema (ji siunčiama kartu kaip laukas `problema`).
+
+Bet kuriame žingsnyje galima praleisti asistentą ir rašyti ar skambinti tiesiogiai.
+
 ## Puslapiai
 
 | Kelias | Turinys |

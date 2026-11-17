@@ -86,9 +86,12 @@ export default function ServicesShowcase() {
             <p className="mt-2 font-display text-2xl font-extrabold text-white">{current.short}</p>
             <ul className="mt-4 flex flex-wrap gap-2">
               {current.includes.slice(0, 3).map((x) => (
-                <li key={x} className="rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur">{x}</li>
+                <li key={x} className="rounded-sm border border-white/25 bg-navy/40 px-2.5 py-1 font-mono text-[0.68rem] uppercase tracking-wide text-white/85">{x}</li>
               ))}
             </ul>
+            <Link to={`/paslaugos/${current.slug}`} className="btn btn-primary mt-6">
+              Plačiau apie paslaugą <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
           </div>
           {/* Progress ticks */}
           <div className="absolute top-6 right-6 flex gap-1.5" aria-hidden="true">

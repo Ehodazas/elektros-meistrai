@@ -23,6 +23,8 @@ export type Project = {
   category: ProjectCategory;
   objectType: string;
   summary: string;
+  /** Pagrindinis techninis tikslas (be išgalvotų rezultatų). */
+  objective: string;
   scope: string[];
   details: string;
   images: { key: PhotoKey; alt: string }[];
@@ -35,6 +37,7 @@ export const projects: Project[] = [
     category: "instaliacija",
     objectType: "Individualus namas",
     summary: "Visa naujo namo elektros instaliacija nuo kabelių trasų iki galutinio pajungimo.",
+    objective: "Suplanuoti visą naujo namo instaliaciją su rezervu būsimiems vartotojams.",
     details:
       "Pavyzdinis projektas parodo, kaip planuojama naujo namo instaliacija: kartu su užsakovu sudaromas lizdų ir jungiklių planas, numatomos atskiros grupės virtuvei, šildymui ir lauko vartotojams, paliekamas rezervas elektromobilio įkrovimui.",
     scope: ["Lizdų ir jungiklių planas", "Kabelių trasos sienose ir lubose", "Atskiros grupės galingiems prietaisams", "Instaliacijos schema"],
@@ -49,6 +52,7 @@ export const projects: Project[] = [
     category: "renovacija",
     objectType: "Butas",
     summary: "Senos aliumininės instaliacijos pakeitimas varine kartu su buto remontu.",
+    objective: "Pakeisti pasenusią aliumininę instaliaciją saugia varine, suderinus darbus su remontu.",
     details:
       "Pavyzdyje aprašoma tipinė senos statybos buto renovacija: išardoma sena instaliacija, įrengiamos naujos kabelių trasos, įžeminimas ir nuotėkio srovės apsauga, lizdai perkeliami pagal naują baldų išdėstymą.",
     scope: ["Senos instaliacijos demontavimas", "Naujos varinės linijos", "Įžeminimas ir apsauga", "Lizdų perkėlimas pagal naują planą"],
@@ -63,6 +67,7 @@ export const projects: Project[] = [
     category: "skydai",
     objectType: "Individualus namas",
     summary: "Naujas skydas su aiškiai pažymėtomis grupėmis ir viršįtampių apsauga.",
+    objective: "Įrengti skydą su aiškiu grupių žymėjimu ir šiuolaikine apsauga.",
     details:
       "Pavyzdinis skydo projektas: parenkami apsaugos aparatai pagal apkrovas, įrengiama nuotėkio srovės ir viršįtampių apsauga, kiekviena grupė pažymima, o skyde paliekama vietos būsimiems vartotojams.",
     scope: ["Apsaugos aparatų parinkimas", "Nuotėkio srovės apsauga", "Viršįtampių apsauga", "Grupių žymėjimas ir schema"],
@@ -77,6 +82,7 @@ export const projects: Project[] = [
     category: "instaliacija",
     objectType: "Butas",
     summary: "Atskiros linijos buitinei technikai ir apšvietimas virš salos.",
+    objective: "Užtikrinti atskiras linijas galingai buitinei technikai ir funkcionalų apšvietimą.",
     details:
       "Pavyzdyje parodoma, kaip virtuvėje suplanuojamos atskiros linijos kaitlentei, orkaitei ir indaplovei, lizdai darbastalio zonoje bei pakabinamų šviestuvų pajungimas virš virtuvės salos.",
     scope: ["Atskiros linijos buitinei technikai", "Lizdai darbastalio zonoje", "Pakabinami šviestuvai virš salos", "Apšvietimas po spintelėmis"],
@@ -91,6 +97,7 @@ export const projects: Project[] = [
     category: "instaliacija",
     objectType: "Komercinės patalpos",
     summary: "Darbo vietų elektra ir bendras apšvietimas atviroje biuro erdvėje.",
+    objective: "Paruošti darbo vietų elektrą ir apšvietimą atviroje erdvėje be ilgų prastovų.",
     details:
       "Pavyzdinis komercinių patalpų projektas: darbo vietų lizdų grupės, atskiros linijos serverinei ar virtuvėlei, bendrasis apšvietimas ir darbų grafikas, suderintas su nuomininko poreikiais.",
     scope: ["Darbo vietų lizdų grupės", "Atskiros linijos įrangai", "Bendrasis apšvietimas", "Darbai pagal suderintą grafiką"],
@@ -105,6 +112,7 @@ export const projects: Project[] = [
     category: "apsvietimas",
     objectType: "Individualus namas",
     summary: "Fasado, įėjimo ir kiemo apšvietimas su automatiniu valdymu.",
+    objective: "Apšviesti fasadą, įėjimą ir takus su automatiniu valdymu.",
     details:
       "Pavyzdyje aprašomas namo lauko apšvietimas: fasado ir įėjimo šviestuvai, takų apšvietimas, lauko lizdai terasoje ir valdymas prieblandos jutikliu bei laikmačiu.",
     scope: ["Fasado ir įėjimo šviestuvai", "Takų apšvietimas", "Lauko lizdai", "Prieblandos jutiklis ir laikmatis"],
@@ -119,6 +127,7 @@ export const projects: Project[] = [
     category: "apsvietimas",
     objectType: "Butas",
     summary: "Įleidžiamos LED linijos koridoriuje ir drabužinėje.",
+    objective: "Integruoti LED apšvietimą į lubas ir lentynas taip, kad maitinimo šaltiniai būtų pasiekiami.",
     details:
       "Pavyzdinis LED apšvietimo projektas: įleidžiamos šviesos linijos lubose, LED juostos lentynose, maitinimo šaltinių vietų planavimas ir valdymas judesio jutikliais.",
     scope: ["Įleidžiamos LED linijos", "LED juostos lentynose", "Maitinimo šaltinių išdėstymas", "Judesio jutikliai"],
@@ -133,6 +142,7 @@ export const projects: Project[] = [
     category: "renovacija",
     objectType: "Komercinės patalpos",
     summary: "Seno skydo ir apsaugos aparatų pakeitimas be ilgų prastovų.",
+    objective: "Atnaujinti seną skydą ir apsaugą veikiančiose patalpose, išlaikant jų darbą.",
     details:
       "Pavyzdyje parodoma, kaip modernizuojama veikiančių patalpų elektros sistema: esamos būklės įvertinimas, darbų etapai ne darbo valandomis, naujas skydas ir apsaugos aparatai, atnaujinta schema.",
     scope: ["Esamos būklės įvertinimas", "Darbai etapais", "Naujas skydas ir apsauga", "Atnaujinta schema"],

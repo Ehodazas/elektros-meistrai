@@ -39,7 +39,7 @@ export default function PageHeader({
               <li key={c.label} className="flex items-center gap-1.5">
                 {i > 0 && <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />}
                 {c.to ? (
-                  <Link to={c.to} className="hover:text-white">{c.label}</Link>
+                  <Link to={c.to} className="inline-flex min-h-6 items-center hover:text-white">{c.label}</Link>
                 ) : (
                   <span aria-current="page" className="text-white/90">{c.label}</span>
                 )}

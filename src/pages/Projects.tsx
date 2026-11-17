@@ -89,9 +89,15 @@ export default function Projects() {
                       </span>
                     )}
                   </div>
-                  <p className="mt-4 text-sm font-semibold text-blue">{categoryLabels[p.category]} · {p.objectType}</p>
-                  <h2 className="mt-1 text-xl font-bold group-hover:text-blue">{p.title}</h2>
-                  <p className="mt-2 text-[0.95rem] text-muted">{p.summary}</p>
+                  <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[0.7rem] uppercase tracking-wider text-muted">
+                    <span className="text-blue">{String(projects.indexOf(p) + 1).padStart(2, "0")} / {categoryLabels[p.category]}</span>
+                    <span aria-hidden="true">·</span>
+                    <span>{p.objectType}</span>
+                  </p>
+                  <h2 className="mt-2 text-xl font-bold group-hover:text-blue">{p.title}</h2>
+                  <p className="mt-2 border-l-2 border-amber pl-3 text-[0.95rem] text-muted">
+                    <span className="sr-only">Tikslas: </span>{p.objective}
+                  </p>
                   <span className="mt-3 inline-flex items-center gap-1.5 font-display text-sm font-bold text-navy">
                     Peržiūrėti <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                   </span>
@@ -142,24 +148,31 @@ function ProjectDialog({ project, onClose }: { project: Project | null; onClose:
               </div>
             ))}
           </div>
-          <div className="grid gap-8 px-5 pt-5 pb-8 sm:px-7 md:grid-cols-[1.3fr_1fr]">
-            <div>
-              <h2 id="project-dialog-title" className="text-2xl font-extrabold sm:text-3xl">{project.title}</h2>
-              <p className="mt-4 text-muted">{project.details}</p>
+          <div className="px-5 pt-5 pb-8 sm:px-7">
+            <h2 id="project-dialog-title" className="text-2xl font-extrabold sm:text-3xl">{project.title}</h2>
+            <dl className="mt-6 grid border-t border-line md:grid-cols-[11rem_1fr]">
+              <dt className="pt-4 font-mono text-[0.7rem] font-semibold uppercase tracking-wider text-muted md:border-b md:border-line md:pb-4">Darbų tipas</dt>
+              <dd className="border-b border-line pt-1 pb-4 font-semibold text-navy md:pt-4">{categoryLabels[project.category]} · {project.objectType}</dd>
+              <dt className="pt-4 font-mono text-[0.7rem] font-semibold uppercase tracking-wider text-muted md:border-b md:border-line md:pb-4">Tikslas</dt>
+              <dd className="border-b border-line pt-1 pb-4 text-ink md:pt-4">{project.objective}</dd>
+              <dt className="pt-4 font-mono text-[0.7rem] font-semibold uppercase tracking-wider text-muted md:border-b md:border-line md:pb-4">Sprendimas</dt>
+              <dd className="border-b border-line pt-1 pb-4 text-muted md:pt-4">{project.details}</dd>
+              <dt className="pt-4 font-mono text-[0.7rem] font-semibold uppercase tracking-wider text-muted md:border-b md:border-line md:pb-4">Darbų apimtis</dt>
+              <dd className="border-b border-line pt-1 pb-4 md:pt-4">
+                <ul className="grid gap-2 sm:grid-cols-2">
+                  {project.scope.map((s) => (
+                    <li key={s} className="flex items-start gap-2 text-[0.95rem]">
+                      <Check className="mt-1 h-4 w-4 shrink-0 text-blue" aria-hidden="true" /> {s}
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </dl>
+            <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               {company.demoMode && (
-                <p className="mt-4 text-sm text-muted italic">Pavyzdinis projektas – iliustruoja darbų tipą, o ne realų objektą.</p>
+                <p className="text-sm text-muted italic">Pavyzdinis projektas – iliustruoja darbų tipą, o ne realų objektą.</p>
               )}
-            </div>
-            <div>
-              <h3 className="font-display text-sm font-bold uppercase tracking-wider text-navy">Darbų apimtis</h3>
-              <ul className="mt-3 space-y-2">
-                {project.scope.map((s) => (
-                  <li key={s} className="flex items-start gap-2 text-[0.95rem]">
-                    <Check className="mt-1 h-4 w-4 shrink-0 text-blue" aria-hidden="true" /> {s}
-                  </li>
-                ))}
-              </ul>
-              <Link to="/kontaktai#uzklausa" className="btn btn-primary mt-6 w-full">Gauti pasiūlymą panašiam darbui</Link>
+              <Link to="/kontaktai#uzklausa" className="btn btn-primary shrink-0">Gauti pasiūlymą panašiam darbui</Link>
             </div>
           </div>
         </div>

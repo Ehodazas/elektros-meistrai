@@ -8,7 +8,7 @@ export default function Faq() {
     <section aria-labelledby="duk-h" className="py-16 md:py-24">
       <div className="wrap grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <div data-reveal="left">
-          <p className="eyebrow">DUK</p>
+          <p className="eyebrow">06 / DUK</p>
           <h2 id="duk-h" className="mt-4 text-3xl font-extrabold sm:text-4xl">Dažniausi klausimai</h2>
           <p className="mt-4 text-muted">Neradote atsakymo? Paskambinkite arba parašykite – pakonsultuosime.</p>
           <PhoneLink className="btn btn-outline mt-6 text-navy" />

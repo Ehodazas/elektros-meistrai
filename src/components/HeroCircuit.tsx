@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
-
 /**
- * Decorative circuit traces over the hero: orthogonal "PCB" lines draw themselves on load,
- * then small pulses of current travel along them. Pulses are only mounted after hydration
- * and when the user hasn't asked for reduced motion.
+ * Decorative installation-diagram traces over the hero photo: thin orthogonal lines are
+ * drawn once on load and their junctions appear – no continuous motion afterwards.
+ * Hidden on small screens, static under reduced motion (see index.css).
  */
 const TRACES = [
   "M-20 120 H180 L220 160 H420 L460 120 H760",
@@ -18,12 +16,6 @@ const NODES: [number, number][] = [
 ];
 
 export default function HeroCircuit() {
-  const [pulses, setPulses] = useState(false);
-
-  useEffect(() => {
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) setPulses(true);
-  }, []);
-
   return (
     <svg
       aria-hidden="true"
@@ -32,42 +24,17 @@ export default function HeroCircuit() {
       className="pointer-events-none absolute inset-0 hidden h-full w-full md:block"
       style={{ maskImage: "radial-gradient(ellipse 65% 90% at 70% 50%, black 25%, transparent 80%)" }}
     >
-      <defs>
-        <radialGradient id="pulse-glow">
-          <stop offset="0%" stopColor="#F5B841" stopOpacity="1" />
-          <stop offset="100%" stopColor="#F5B841" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <g fill="none" stroke="rgba(245,184,65,0.28)" strokeWidth="1.25" strokeLinejoin="round">
+      <g fill="none" stroke="rgba(245,184,65,0.32)" strokeWidth="1.25" strokeLinejoin="round">
         {TRACES.map((d, i) => (
-          <path key={i} id={`trace-${i}`} d={d} pathLength={1} className="wire-draw" style={{ animationDelay: `${0.2 + i * 0.18}s`, animationDuration: "1.8s" }} />
+          <path key={i} d={d} pathLength={1} className="wire-draw" style={{ animationDelay: `${0.2 + i * 0.12}s`, animationDuration: "1.2s" }} />
         ))}
       </g>
       <g>
         {NODES.map(([x, y], i) => (
-          <circle key={i} cx={x} cy={y} r="3.5" fill="#101D30" stroke="rgba(245,184,65,0.55)" strokeWidth="1.25"
-            className="node-pop" style={{ animationDelay: `${1.2 + i * 0.07}s` }} />
+          <circle key={i} cx={x} cy={y} r="3" fill="#101D30" stroke="rgba(245,184,65,0.6)" strokeWidth="1.25"
+            className="node-pop" style={{ animationDelay: `${0.9 + i * 0.05}s` }} />
         ))}
       </g>
-      {pulses && (
-        <g>
-          {TRACES.map((_, i) => (
-            <g key={i} visibility="hidden">
-              <set attributeName="visibility" to="visible" begin={`${2 + i * 0.9}s`} />
-              <circle r="9" fill="url(#pulse-glow)" opacity="0.7">
-                <animateMotion dur={`${3.2 + i * 0.7}s`} begin={`${2 + i * 0.9}s`} repeatCount="indefinite" rotate="auto">
-                  <mpath href={`#trace-${i}`} />
-                </animateMotion>
-              </circle>
-              <circle r="2" fill="#FFE3A3">
-                <animateMotion dur={`${3.2 + i * 0.7}s`} begin={`${2 + i * 0.9}s`} repeatCount="indefinite">
-                  <mpath href={`#trace-${i}`} />
-                </animateMotion>
-              </circle>
-            </g>
-          ))}
-        </g>
-      )}
     </svg>
   );
 }

@@ -120,9 +120,15 @@ export default function Header() {
       <div
         id="mobile-menu"
         ref={panelRef}
-        hidden={!open}
+        inert={!open}
+        aria-hidden={!open}
         style={{ height: panelHeight || undefined }}
-        className="absolute inset-x-0 top-full z-40 h-[calc(100dvh-4.5rem)] overflow-y-auto bg-navy text-white lg:hidden"
+        className={`absolute inset-x-0 top-full z-40 h-[calc(100dvh-4.5rem)] overflow-y-auto bg-navy text-white duration-200 ease-out lg:hidden ${
+          // Opening: visible immediately (so focus can move in), then fade. Closing: fade, then hide.
+          open
+            ? "visible translate-y-0 opacity-100 transition-[opacity,transform]"
+            : "invisible -translate-y-2 opacity-0 transition-[opacity,transform,visibility]"
+        }`}
       >
         <nav aria-label="Mobilusis meniu" className="wrap flex min-h-full flex-col py-6">
           <ul className="divide-y divide-white/10 border-y border-white/10">

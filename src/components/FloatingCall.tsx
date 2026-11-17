@@ -22,7 +22,7 @@ export default function FloatingCall() {
 
   return (
     <div
-      className={`fixed right-6 bottom-6 z-30 hidden flex-col items-end gap-3 transition-[opacity,transform] duration-300 lg:flex ${
+      className={`fixed right-6 bottom-6 z-30 hidden flex-col items-end gap-3 transition-[opacity,transform] duration-300 min-[1440px]:flex ${
         show ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
       }`}
       aria-hidden={!show}
@@ -37,11 +37,11 @@ export default function FloatingCall() {
         <ArrowUp className="h-5 w-5" aria-hidden="true" />
       </button>
       {hasPhone ? (
-        <a href={`tel:${company.phone}`} className={`${base} ring-pulse bg-amber text-navy`} aria-label="Skambinti" tabIndex={show ? 0 : -1}>
+        <a href={`tel:${company.phone}`} className={`${base} bg-amber text-navy`} aria-label="Skambinti" tabIndex={show ? 0 : -1}>
           <Phone className="h-6 w-6" aria-hidden="true" />
         </a>
       ) : (
-        <Link to="/kontaktai#uzklausa" className={`${base} ring-pulse bg-amber text-navy`} aria-label="Gauti pasiūlymą" tabIndex={show ? 0 : -1}>
+        <Link to="/kontaktai#uzklausa" className={`${base} bg-amber text-navy`} aria-label="Gauti pasiūlymą" tabIndex={show ? 0 : -1}>
           <Phone className="h-6 w-6" aria-hidden="true" />
         </Link>
       )}

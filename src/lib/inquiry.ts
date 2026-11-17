@@ -15,6 +15,8 @@ export type InquiryData = {
   objektas: string;
   aprasymas: string;
   sutikimas: boolean;
+  /** Problem chosen in the „Kokia elektros problema?“ assistant (label), optional. */
+  problema: string;
 };
 
 export type InquiryErrors = Partial<Record<keyof InquiryData, string>>;
@@ -28,6 +30,7 @@ export const emptyInquiry: InquiryData = {
   objektas: "",
   aprasymas: "",
   sutikimas: false,
+  problema: "",
 };
 
 export const FORM_ENDPOINT = ((import.meta.env.VITE_FORM_ENDPOINT as string | undefined) ?? "").trim();
